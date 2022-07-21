@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from 'react'
+import { ApolloProvider } from '@apollo/client'
+import { GlobalStyle } from '@styles/global'
+import { ThemeProvider } from 'styled-components'
+import themeStore from '@state/theme/theme'
+import { light, dark } from '@styles/theme'
+import { Home } from './pages/Home'
+import client from './api/apollo-client'
+import './index.css'
 
-function App() {
+const Application: FC = () => {
+  const { theme } = themeStore((state) => state)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme === true ? light : dark}>
+        <GlobalStyle />
+        <Home />
+      </ThemeProvider>
+    </ApolloProvider>
+  )
 }
 
-export default App;
+export default Application
