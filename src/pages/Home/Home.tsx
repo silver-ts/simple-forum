@@ -1,101 +1,45 @@
 import { FC } from 'react'
-import { gql, useQuery } from '@apollo/client'
-import { Header } from '@components/Header'
+import { useQuery } from '@apollo/client'
+import { HOMEPAGE_POSTS_QUERY } from '@constants/queries'
+import { PageWrapper } from '@pages/PageWrapper'
+import { Text } from '@components/Text'
+
+import * as S from './styles'
 
 type Post = {
   body: string
   id: string
   createdAt: string
   title: string
-  comments: any
+  comments: {
+    comment: string
+    id: string
+    author: {
+      username: string
+      displayName: string
+      id: string
+    }
+  }
   author: any
 }
 
-const QUERY = gql`
-  query GetPosts {
-    posts {
-      id
-      body
-      title
-      createdAt
-      author {
-        displayName
-      }
-      comments {
-        comment
-        id
-        createdAt
-        user {
-          displayName
-        }
-      }
-    }
-  }
-`
-
 const Home: FC = () => {
-  const { data } = useQuery(QUERY)
+  const { data, loading, error } = useQuery(HOMEPAGE_POSTS_QUERY)
 
   const posts = data?.posts || []
-  const reversePosts = [...posts].reverse()
-
-  const getDate = (date: number) =>
-    new Date(date).toLocaleString('pt-br').toString()
 
   return (
-    <div>
-      <Header />
-      {reversePosts?.map((post: Post) => (
-        <div
-          key={post?.id}
-          style={{ background: '#60686c', margin: '20px', padding: '20px' }}
-        >
-          <h2>{post?.title}</h2>
-          <div
-            style={{
-              display: 'flex',
-              gap: '10px',
-              alignItems: 'center'
-            }}
-          >
-            <strong>By {post?.author?.displayName}</strong> -
-            <p>{getDate(parseInt(post?.createdAt, 10))}</p>
-          </div>
-          <p>{post?.body}</p>
-          <div
-            style={{
-              marginTop: '40px',
-              background: '#313537',
-              padding: '10px'
-            }}
-          >
-            <h3>comments</h3>
-            {post?.comments.map((comment: any) => (
-              <div
-                key={comment?.id}
-                style={{
-                  padding: '10px',
-                  background: '#494f52',
-                  marginTop: '10px'
-                }}
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    gap: '10px',
-                    alignItems: 'center'
-                  }}
-                >
-                  <strong>{comment?.user?.displayName}</strong>-
-                  <p>{getDate(parseInt(comment?.createdAt, 10))}</p>
-                </div>
-                <p>{comment?.comment}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+    <PageWrapper>
+      <S.Container>
+        <S.Content>
+          {posts?.map((post: Post) => (
+            <S.PostCard key={post?.id}>
+              <Text type="medium-title">{post?.title}</Text>
+            </S.PostCard>
+          ))}
+        </S.Content>
+      </S.Container>
+    </PageWrapper>
   )
 }
 

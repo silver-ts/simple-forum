@@ -8,6 +8,7 @@
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
       "@state/*": ["src/state/*"],
+      "@constants/*": ["src/constants/*"],
       "@hooks/*": ["src/hooks/*"],
       "@config/*": ["src/config/*"],
       "@package": ["package.json"]
