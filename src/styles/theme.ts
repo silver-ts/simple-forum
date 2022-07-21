@@ -8,10 +8,10 @@ const defineFont = (family: string, size: string, weight: number) => ({
 
 const fonts = {
   'big-title': defineFont('Roboto Condensed', '3.25rem', 600),
-  'medium-title': defineFont('montserrat-medium', '2.188rem', 600),
-  'regular-title': defineFont('montserrat-medium', '1.75rem', 600),
-  'small-title': defineFont('montserrat-medium', '1.188rem', 600),
-  'super-small-title': defineFont('montserrat-medium', '0.875rem', 600),
+  'medium-title': defineFont('cairo-medium', '2.188rem', 600),
+  'regular-title': defineFont('cairo-medium', '1.75rem', 600),
+  'small-title': defineFont('cairo-medium', '1.188rem', 600),
+  'super-small-title': defineFont('cairo-medium', '0.875rem', 600),
   'super-big-label': defineFont('Roboto Condensed', '1.375rem', 600),
   'big-label': defineFont('Roboto Condensed', '1.188rem', 500),
   'medium-label': defineFont('Roboto', '0.938rem', 500),
@@ -40,7 +40,7 @@ export const light: DefaultTheme = {
     system: {
       primary: '#fff',
       secondary: '#CDCDCD',
-      tertiary: '#9E9E9E',
+      tertiary: '#898989',
       contrast: '#FFFFFF',
       greydark: '#424242',
       greylight: '#8E8E8E',

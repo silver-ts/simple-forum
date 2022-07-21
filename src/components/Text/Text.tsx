@@ -7,10 +7,10 @@ import { useTheme } from 'styled-components'
 import * as S from './styles'
 
 const availableFonts = [
-  'montserrat-regular',
-  'montserrat-bold',
-  'montserrat-light',
-  'montserrat-medium',
+  'cairo-regular',
+  'cairo-bold',
+  'cairo-light',
+  'cairo-medium',
   'roboto',
   'roboto condensed'
 ] as const
@@ -38,7 +38,7 @@ export type TextProps = {
   color?: Styles.Colors
   size?: React.CSSProperties['fontSize']
   font?: Font
-  align?: 'left' | 'center' | 'right'
+  align?: 'left' | 'center' | 'right' | 'justify'
   italic?: boolean
   upperCase?: boolean
   loading?: boolean

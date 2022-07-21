@@ -9,7 +9,7 @@ export const Text = styled.div<TextProps & { textColor: string }>`
   text-align: ${({ align }) => align || 'center'};
 
   ${({ weight }) => weight && `font-weight: ${weight}`};
-  ${({ font }) => font === 'montserrat-bold' && 'font-weight: bold;'}
+  ${({ font }) => font === 'cairo-bold' && 'font-weight: bold;'}
   ${({ italic }) => italic && 'font-style: italic;'}
   ${({ upperCase }) => upperCase && 'text-transform: uppercase;'};
   ${({ lowerCase }) => lowerCase && 'text-transform: lowercase;'};
