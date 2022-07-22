@@ -1,16 +1,36 @@
 import { FC, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { Button } from '@components/Button'
 import { Text } from '@components/Text'
+import { useTheme } from 'styled-components'
+import { dark } from '@styles/theme'
 import MockProfileImage from '@assets/images/profile-mock.png'
+import useIsAuthenticated from '@utils/useIsAuthenticated'
 import Logo from '@assets/images/logo.svg'
+import authStore from '@state/auth/auth'
 
-import * as S from './styles'
+import ShouldRender from '../ShouldRender'
 import { ThemeSwitch } from './ThemeSwitch'
 
+import * as S from './styles'
+
 const Header: FC = () => {
+  const { t } = useTranslation()
+
+  const { setToken } = authStore()
+
+  const [isAuthenticated] = useIsAuthenticated()
+
   const navigate = useNavigate()
 
+  const theme = useTheme()
+
   const goTo = useCallback((to: string) => () => navigate(to), [])
+
+  const handleClickAvatar = useCallback(() => {
+    setToken(undefined)
+  }, [])
 
   return (
     <S.Container>
@@ -22,7 +42,21 @@ const Header: FC = () => {
           </Text>
         </S.LogoContainer>
         <S.SettingsContainer>
-          <S.Avatar src={MockProfileImage} />
+          <ShouldRender if={isAuthenticated}>
+            <S.Avatar src={MockProfileImage} onClick={handleClickAvatar} />
+          </ShouldRender>
+
+          <ShouldRender if={!isAuthenticated}>
+            <Button
+              width={100}
+              label={t('login')}
+              onClick={goTo('/login')}
+              backgroundColor={
+                theme === dark ? 'system-contrast' : 'social-instagram'
+              }
+              textColor="system-secondary"
+            />
+          </ShouldRender>
           <ThemeSwitch />
         </S.SettingsContainer>
       </S.Content>

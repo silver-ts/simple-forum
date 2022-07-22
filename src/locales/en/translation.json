@@ -4,5 +4,12 @@
   "postedAt": "Posted {{time}}",
   "by": "By <0>{{author}}</>",
   "comments": "Comments",
-  "poweredByClusters": "Powered by <0>Clusters API</0> - Made by <1>leojuriolli7</1>"
+  "poweredByClusters": "Powered by <0>Clusters API</0> - Made by <1>leojuriolli7</1>",
+  "required": "Required",
+  "emailInvalid": "Not a valid e-mail",
+  "min": "Minimum of {{min}} characters",
+  "email": "E-mail",
+  "password": "Password",
+  "login": "Login",
+  "alreadyLogged": "Already logged in"
 }

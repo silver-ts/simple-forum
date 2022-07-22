@@ -1,21 +1,21 @@
 import { FC, useEffect } from 'react'
-import { ApolloProvider } from '@apollo/client'
-import { GlobalStyle } from '@styles/global'
+import i18next from 'i18next'
 import { ThemeProvider } from 'styled-components'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import themeStore from '@state/theme/theme'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { ApolloProvider } from '@apollo/client'
+import { GlobalStyle } from '@styles/global'
 import { light, dark } from '@styles/theme'
 import { LanguageSelector } from '@components/LanguageSelector'
-import { Post } from '@pages/Post'
-import { Home } from '@pages/Home'
 import languageStore from '@state/language/language'
-import i18next from 'i18next'
+import { Post } from '@pages/Post'
+import { Login } from '@pages/Login'
+import { Home } from '@pages/Home'
+
 import client from './api/apollo-client'
 import 'react-toastify/dist/ReactToastify.css'
-
 import './i18n'
-
 import './index.css'
 
 const Application: FC = () => {
@@ -34,6 +34,7 @@ const Application: FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/posts/:id" element={<Post />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
           <LanguageSelector />
         </BrowserRouter>
