@@ -25,7 +25,10 @@ const PostCard: FC<Props> = ({ post, loading, onClick }) => (
           ellipsis
           type="big-label"
         >
-          By {post?.author?.displayName}
+          By{' '}
+          <Text tag="span" type="big-label" weight={600}>
+            {post?.author?.displayName}
+          </Text>
         </Text>
         <Text loading={loading} shimmerWidth={100} type="big-label">
           {useFormattedDistanceToNow(Number(post?.createdAt))}

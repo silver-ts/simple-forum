@@ -32,9 +32,13 @@ const Home: FC<Props> = ({ post, loading }) => (
         loading={loading}
         ellipsis
         type="super-big-label"
+        weight={400}
         shimmerWidth={150}
       >
-        By {post?.author?.displayName}
+        By{' '}
+        <Text loading={loading} type="super-big-label" tag="span" weight={600}>
+          {post?.author?.displayName}
+        </Text>
       </Text>
     </S.PostInfo>
     <S.PostBodyContainer>
