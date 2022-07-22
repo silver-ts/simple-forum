@@ -25,7 +25,7 @@ const Home: FC<Props> = ({ post, loading }) => (
           Posted {useFormattedDistanceToNow(Number(post?.createdAt))}
         </Text>
         <Text loading={loading} type="medium-label" shimmerWidth={100}>
-          Updated at {useFormattedDistanceToNow(Number(post?.updatedAt))}
+          Updated {useFormattedDistanceToNow(Number(post?.updatedAt))}
         </Text>
       </S.PostDates>
       <Text
