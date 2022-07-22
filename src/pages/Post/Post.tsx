@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Text } from '@components/Text'
+import { useTranslation } from 'react-i18next'
 import { GET_POST_BY_ID } from '@constants/queries'
 import { useTheme } from 'styled-components'
 import { dark } from '@styles/theme'
@@ -14,8 +15,8 @@ import { Comment } from './Comment'
 import * as S from './styles'
 
 const Home: FC = () => {
+  const { t } = useTranslation()
   const { id } = useParams()
-
   const theme = useTheme()
 
   const { data, loading, error } = useQuery(GET_POST_BY_ID, {
@@ -51,7 +52,7 @@ const Home: FC = () => {
           type="medium-title"
           color={theme === dark ? 'system-contrast' : 'social-instagram'}
         >
-          Comments
+          {t('comments')}
         </Text>
         <ShouldRender if={!loading}>
           {post?.comments?.map((comment) => (

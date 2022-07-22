@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useTranslation, Trans } from 'react-i18next'
 import useFormattedDistanceToNow from '@utils/useFormattedDistanceToNow'
 import ShouldRender from '@components/ShouldRender'
 import { Post } from '@constants/types'
@@ -11,53 +12,71 @@ type Props = {
   loading: boolean
 }
 
-const Home: FC<Props> = ({ post, loading }) => (
-  <S.PostText>
-    <S.PostInfo>
-      <Text
-        loading={loading}
-        shimmerWidth="clamp(250px, 50%, 550px)"
-        type="big-title"
-        style={{ lineHeight: 1.1 }}
-      >
-        {post?.title}
-      </Text>
-      <S.PostDates>
-        <Text loading={loading} type="medium-label" shimmerWidth={100}>
-          Posted {useFormattedDistanceToNow(Number(post?.createdAt))}
+const Home: FC<Props> = ({ post, loading }) => {
+  const { t } = useTranslation()
+
+  return (
+    <S.PostText>
+      <S.PostInfo>
+        <Text
+          loading={loading}
+          shimmerWidth="clamp(250px, 50%, 550px)"
+          type="big-title"
+          style={{ lineHeight: 1.1 }}
+        >
+          {post?.title}
         </Text>
-        <ShouldRender if={post?.updatedAt !== post?.createdAt}>
+        <S.PostDates>
           <Text loading={loading} type="medium-label" shimmerWidth={100}>
-            Updated {useFormattedDistanceToNow(Number(post?.updatedAt))}
+            {t('postedAt', {
+              time: useFormattedDistanceToNow(Number(post?.createdAt))
+            })}
           </Text>
-        </ShouldRender>
-      </S.PostDates>
-      <Text
-        loading={loading}
-        ellipsis
-        type="super-big-label"
-        weight={400}
-        shimmerWidth={150}
-      >
-        By{' '}
-        <Text loading={loading} type="super-big-label" tag="span" weight={600}>
-          {post?.author?.displayName}
+          <ShouldRender if={post?.updatedAt !== post?.createdAt}>
+            <Text loading={loading} type="medium-label" shimmerWidth={100}>
+              {' - '}
+              {t('updatedAt', {
+                time: useFormattedDistanceToNow(Number(post?.updatedAt))
+              })}
+            </Text>
+          </ShouldRender>
+        </S.PostDates>
+        <Text
+          loading={loading}
+          ellipsis
+          type="super-big-label"
+          weight={400}
+          shimmerWidth={150}
+        >
+          <Trans
+            t={t}
+            i18nKey="by"
+            values={{ author: post?.author?.displayName }}
+            components={[
+              <Text
+                loading={loading}
+                type="super-big-label"
+                tag="span"
+                weight={600}
+              />
+            ]}
+          />
         </Text>
-      </Text>
-    </S.PostInfo>
-    <S.PostBodyContainer>
-      <Text
-        loading={loading}
-        shimmerWidth="100%"
-        shimmerLines={3}
-        type="big-label"
-        align="justify"
-        style={{ lineHeight: 1.2 }}
-      >
-        {post?.body}
-      </Text>
-    </S.PostBodyContainer>
-  </S.PostText>
-)
+      </S.PostInfo>
+      <S.PostBodyContainer>
+        <Text
+          loading={loading}
+          shimmerWidth="100%"
+          shimmerLines={3}
+          type="big-label"
+          align="justify"
+          style={{ lineHeight: 1.2 }}
+        >
+          {post?.body}
+        </Text>
+      </S.PostBodyContainer>
+    </S.PostText>
+  )
+}
 
 export default Home

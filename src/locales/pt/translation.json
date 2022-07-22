@@ -1,0 +1,8 @@
+{
+  "posts": "Publicações",
+  "updatedAt": "Editado {{time}}",
+  "postedAt": "Postado {{time}}",
+  "by": "Por <0>{{author}}</>",
+  "comments": "Comentários",
+  "poweredByClusters": "Powered by <0>Clusters API</0> - Feito por <1>leojuriolli7</1>"
+}

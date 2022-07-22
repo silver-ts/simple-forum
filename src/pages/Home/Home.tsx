@@ -1,4 +1,5 @@
 import { FC, useCallback, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -13,6 +14,8 @@ import { PostCard } from './PostCard'
 import * as S from './styles'
 
 const Home: FC = () => {
+  const { t } = useTranslation()
+
   const { data, loading, error } = useQuery(HOMEPAGE_POSTS_QUERY)
 
   const posts = data?.posts || []
@@ -39,7 +42,7 @@ const Home: FC = () => {
             type="big-title"
             color={theme === dark ? 'system-contrast' : 'social-instagram'}
           >
-            Posts
+            {t('posts')}
           </Text>
           <ShouldRender if={!loading}>
             {posts?.map((post) => (

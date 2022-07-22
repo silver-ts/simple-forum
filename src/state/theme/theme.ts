@@ -1,15 +1,14 @@
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
 
-// type State = {
-//   theme: boolean
-//   toggleTheme: (value: boolean) => void
-// }
+type State = {
+  theme: boolean
+  toggleTheme: (value: boolean) => void
+}
 
-// eslint-disable-next-line
-const themeStore = create<any>(
-  persist((set) => ({
-    theme: true,
+const themeStore = create(
+  persist<State>((set) => ({
+    theme: false,
     toggleTheme: (value) => set(() => ({ theme: value }))
   }))
 )
