@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import { dark } from './theme'
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -9,10 +10,21 @@ export const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
 
       transition: background-color 700ms ease; 
+
     }
   
   body {
     -webkit-font-smoothing: antialiased;
+    &::-webkit-scrollbar {
+      background-color: ${({ theme }) =>
+        theme === dark && theme.colors.system.tertiary};
+  }
+
+  &::-webkit-scrollbar-thumb{
+    background-color: ${({ theme }) => theme === dark && '#888'};
+
+  }
+
   background: ${({ theme }) => theme.colors.system.primary};
 
   }

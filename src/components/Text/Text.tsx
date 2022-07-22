@@ -60,6 +60,7 @@ export type TextProps = {
   className?: string
   htmlFor?: string
   hyphens?: boolean
+  target?: '_blank' | 'self' | '_parent' | '_top'
 }
 
 const Text: React.FC<TextProps> = ({
@@ -87,6 +88,7 @@ const Text: React.FC<TextProps> = ({
   numberOfLines = 1,
   tag = 'p',
   align = 'left',
+  target = '_blank',
   ...props
 }: TextProps) => {
   const theme = useTheme()
@@ -141,6 +143,7 @@ const Text: React.FC<TextProps> = ({
           onClick={onClick}
           className={className}
           hyphens={hyphens}
+          target={tag === 'a' ? target : undefined}
           {...typeProps}
         >
           {customChildren}

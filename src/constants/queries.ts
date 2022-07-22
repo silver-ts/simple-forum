@@ -7,6 +7,7 @@ export const HOMEPAGE_POSTS_QUERY = gql`
       body
       title
       createdAt
+      updatedAt
       author {
         displayName
       }
@@ -14,6 +15,30 @@ export const HOMEPAGE_POSTS_QUERY = gql`
         comment
         id
         createdAt
+        user {
+          displayName
+        }
+      }
+    }
+  }
+`
+
+export const GET_POST_BY_ID = gql`
+  query GetPost($id: ID!) {
+    post(id: $id) {
+      id
+      body
+      title
+      createdAt
+      updatedAt
+      author {
+        displayName
+      }
+      comments {
+        comment
+        id
+        createdAt
+        updatedAt
         user {
           displayName
         }

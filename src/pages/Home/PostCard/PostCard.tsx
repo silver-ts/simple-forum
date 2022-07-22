@@ -1,38 +1,19 @@
 import { FC } from 'react'
 import { Text } from '@components/Text'
-import useGetCurrentLocale from '@utils/useGetCurrentLocale/useGetCurrentLocale'
+import { Post } from '@constants/types'
 import ShouldRender from '@components/ShouldRender'
-import { formatDistanceToNow } from 'date-fns'
+import useFormattedDistanceToNow from '@utils/useFormattedDistanceToNow'
 
 import * as S from './styles'
 
-type Post = {
-  post?: {
-    body: string
-    id: string
-    createdAt: string
-    updatedAt: string
-    title: string
-    comments: {
-      comment: string
-      id: string
-      user: {
-        username: string
-        displayName: string
-        id: string
-      }
-    }
-    author: {
-      username: string
-      displayName: string
-      id: string
-    }
-  }
+type Props = {
+  post?: Post
   loading: boolean
+  onClick?: () => void
 }
 
-const PostCard: FC<Post> = ({ post, loading }) => (
-  <S.PostCard key={post?.id}>
+const PostCard: FC<Props> = ({ post, loading, onClick }) => (
+  <S.PostCard key={post?.id} onClick={onClick}>
     <S.PostHeader>
       <Text loading={loading} shimmerWidth={300} type="medium-title">
         {post?.title}
@@ -44,24 +25,16 @@ const PostCard: FC<Post> = ({ post, loading }) => (
           ellipsis
           type="big-label"
         >
-          {post?.author?.displayName}
+          By {post?.author?.displayName}
         </Text>
         <Text loading={loading} shimmerWidth={100} type="big-label">
-          {formatDistanceToNow(Number(post?.createdAt || 0), {
-            includeSeconds: true,
-            locale: useGetCurrentLocale(),
-            addSuffix: true
-          })}
+          {useFormattedDistanceToNow(Number(post?.createdAt))}
         </Text>
       </S.UserAndDateContainer>
       <ShouldRender if={post?.updatedAt}>
         <Text loading={loading} type="big-label">
           {`Updated
-          ${formatDistanceToNow(Number(post?.updatedAt || 0), {
-            includeSeconds: true,
-            locale: useGetCurrentLocale(),
-            addSuffix: true
-          })}`}
+          ${useFormattedDistanceToNow(Number(post?.updatedAt))}`}
         </Text>
       </ShouldRender>
     </S.PostHeader>

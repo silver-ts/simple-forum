@@ -6,7 +6,8 @@ import { ToastContainer } from 'react-toastify'
 import themeStore from '@state/theme/theme'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { light, dark } from '@styles/theme'
-import { Home } from './pages/Home'
+import { Post } from '@pages/Post'
+import { Home } from '@pages/Home'
 import client from './api/apollo-client'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -21,6 +22,7 @@ const Application: FC = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/posts/:id" element={<Post />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
