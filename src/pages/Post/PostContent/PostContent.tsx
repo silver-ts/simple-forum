@@ -16,7 +16,7 @@ const Home: FC<Props> = ({ post, loading }) => (
       <Text
         loading={loading}
         shimmerWidth="clamp(250px, 50%, 550px)"
-        type="medium-title"
+        type="big-title"
       >
         {post?.title}
       </Text>

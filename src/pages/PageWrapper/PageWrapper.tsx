@@ -1,4 +1,5 @@
 import { Header } from '@components/Header'
+import { Footer } from '@components/Footer'
 import React, { FC } from 'react'
 
 type Props = {
@@ -12,6 +13,7 @@ const PageWrapper: FC<Props> = (props) => {
     <>
       <Header />
       {children}
+      <Footer />
     </>
   )
 }
