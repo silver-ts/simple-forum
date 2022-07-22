@@ -67,7 +67,7 @@ const Home: FC = () => {
                 <Text
                   type="big-label"
                   ellipsis
-                  numberOfLines={4}
+                  numberOfLines={3}
                   align="justify"
                 >
                   {post?.body}

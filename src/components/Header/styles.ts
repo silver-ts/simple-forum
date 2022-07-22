@@ -4,7 +4,6 @@ import { MdDarkMode } from 'react-icons/md'
 import { HiSun } from 'react-icons/hi'
 
 export const Container = styled.header`
-  width: 100vw;
   background: ${({ theme }) => theme.colors.system.secondary};
 `
 
