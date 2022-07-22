@@ -12,6 +12,7 @@ export const Content = styled.div`
   width: 100%;
 
   background: ${({ theme }) => theme.colors.system.tertiary};
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 5px;
   padding: 20px 0;
 `
 

@@ -33,7 +33,7 @@ const Home: FC = () => {
   }, [error])
 
   useEffect(() => {
-    if (post?.title !== undefined) document.title = `Cluster - ${post?.title}`
+    if (post?.title !== undefined) document.title = post?.title
 
     return () => {
       document.title = 'Cluster'

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Comment = styled.div`
   background: ${({ theme }) => theme.colors.system.tertiary};
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
   padding: 20px;
   display: flex;
   flex-direction: column;

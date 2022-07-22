@@ -3,6 +3,7 @@ import { Image } from '@components/Image'
 
 export const Container = styled.header`
   background: ${({ theme }) => theme.colors.system.secondary};
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 `
 
 export const Content = styled.div`

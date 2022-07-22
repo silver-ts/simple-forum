@@ -7,6 +7,7 @@ export const PostCard = styled.div`
   padding: 20px 30px;
   cursor: pointer;
   transition: 300ms;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
   :hover {
     transform: scale(1.05);
