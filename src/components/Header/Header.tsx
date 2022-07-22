@@ -5,7 +5,7 @@ import { Button } from '@components/Button'
 import { Text } from '@components/Text'
 import { useTheme } from 'styled-components'
 import { dark } from '@styles/theme'
-import MockProfileImage from '@assets/images/profile-mock.png'
+import Default from '@assets/images/user-default.jpg'
 import useIsAuthenticated from '@utils/useIsAuthenticated'
 import Logo from '@assets/images/logo.svg'
 import authStore from '@state/auth/auth'
@@ -43,7 +43,7 @@ const Header: FC = () => {
         </S.LogoContainer>
         <S.SettingsContainer>
           <ShouldRender if={isAuthenticated}>
-            <S.Avatar src={MockProfileImage} onClick={handleClickAvatar} />
+            <S.Avatar src={Default} onClick={handleClickAvatar} />
           </ShouldRender>
 
           <ShouldRender if={!isAuthenticated}>

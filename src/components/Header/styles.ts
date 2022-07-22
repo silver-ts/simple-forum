@@ -21,7 +21,6 @@ export const LogoContainer = styled.div`
   align-items: center;
   gap: 10px;
   cursor: pointer;
-
   img {
     filter: invert(32%) sepia(98%) saturate(950%) hue-rotate(289deg)
       brightness(81%) contrast(97%);
@@ -46,4 +45,6 @@ export const Avatar = styled(Image).attrs({
   alt: 'User Image'
 })`
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 `
