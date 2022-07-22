@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import useFormattedDistanceToNow from '@utils/useFormattedDistanceToNow'
+import ShouldRender from '@components/ShouldRender'
 import { Post } from '@constants/types'
 import { Text } from '@components/Text'
 
@@ -17,6 +18,7 @@ const Home: FC<Props> = ({ post, loading }) => (
         loading={loading}
         shimmerWidth="clamp(250px, 50%, 550px)"
         type="big-title"
+        style={{ lineHeight: 1.1 }}
       >
         {post?.title}
       </Text>
@@ -24,9 +26,11 @@ const Home: FC<Props> = ({ post, loading }) => (
         <Text loading={loading} type="medium-label" shimmerWidth={100}>
           Posted {useFormattedDistanceToNow(Number(post?.createdAt))}
         </Text>
-        <Text loading={loading} type="medium-label" shimmerWidth={100}>
-          Updated {useFormattedDistanceToNow(Number(post?.updatedAt))}
-        </Text>
+        <ShouldRender if={post?.updatedAt !== post?.createdAt}>
+          <Text loading={loading} type="medium-label" shimmerWidth={100}>
+            Updated {useFormattedDistanceToNow(Number(post?.updatedAt))}
+          </Text>
+        </ShouldRender>
       </S.PostDates>
       <Text
         loading={loading}
@@ -47,9 +51,8 @@ const Home: FC<Props> = ({ post, loading }) => (
         shimmerWidth="100%"
         shimmerLines={3}
         type="big-label"
-        ellipsis
-        numberOfLines={5}
         align="justify"
+        style={{ lineHeight: 1.2 }}
       >
         {post?.body}
       </Text>

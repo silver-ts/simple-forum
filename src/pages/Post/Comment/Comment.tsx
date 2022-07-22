@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Text } from '@components/Text'
 import useFormattedDistanceToNow from '@utils/useFormattedDistanceToNow'
+import ShouldRender from '@components/ShouldRender'
 import { Comment as CommentType } from '@constants/types'
 
 import * as S from './styles'
@@ -25,9 +26,11 @@ const Comment: FC<Props> = ({ comment, loading }) => (
         </Text>
       </Text>
 
-      <Text type="medium-label" loading={loading} shimmerWidth={100}>
-        Updated {useFormattedDistanceToNow(Number(comment?.updatedAt))}
-      </Text>
+      <ShouldRender if={comment?.updatedAt !== comment?.createdAt}>
+        <Text type="medium-label" loading={loading} shimmerWidth={100}>
+          Updated {useFormattedDistanceToNow(Number(comment?.updatedAt))}
+        </Text>
+      </ShouldRender>
     </S.CommentInfo>
     <S.CommentText>
       <Text

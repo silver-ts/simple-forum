@@ -15,7 +15,12 @@ type Props = {
 const PostCard: FC<Props> = ({ post, loading, onClick }) => (
   <S.PostCard key={post?.id} onClick={onClick}>
     <S.PostHeader>
-      <Text loading={loading} shimmerWidth={300} type="medium-title">
+      <Text
+        loading={loading}
+        shimmerWidth={300}
+        type="medium-title"
+        style={{ lineHeight: 1.1 }}
+      >
         {post?.title}
       </Text>
       <S.UserAndDateContainer>
@@ -34,7 +39,7 @@ const PostCard: FC<Props> = ({ post, loading, onClick }) => (
           {useFormattedDistanceToNow(Number(post?.createdAt))}
         </Text>
       </S.UserAndDateContainer>
-      <ShouldRender if={post?.updatedAt}>
+      <ShouldRender if={post?.updatedAt !== post?.createdAt}>
         <Text loading={loading} type="big-label">
           {`Updated
           ${useFormattedDistanceToNow(Number(post?.updatedAt))}`}
@@ -50,6 +55,7 @@ const PostCard: FC<Props> = ({ post, loading, onClick }) => (
         ellipsis
         numberOfLines={3}
         align="justify"
+        style={{ lineHeight: 1.2 }}
       >
         {post?.body}
       </Text>
