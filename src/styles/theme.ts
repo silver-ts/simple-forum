@@ -38,9 +38,9 @@ const social = {
 export const light: DefaultTheme = {
   colors: {
     system: {
-      primary: '#fff',
+      primary: '#7774',
       secondary: '#CDCDCD',
-      tertiary: '#898989',
+      tertiary: '#989898',
       contrast: '#FFFFFF',
       greydark: '#424242',
       greylight: '#8E8E8E',
@@ -56,7 +56,7 @@ export const light: DefaultTheme = {
 export const dark: DefaultTheme = {
   colors: {
     system: {
-      primary: '#000000',
+      primary: '#111',
       secondary: '#1D1D1D',
       tertiary: '#343434',
       contrast: '#FFFFFF',
