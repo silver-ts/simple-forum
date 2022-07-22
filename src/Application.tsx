@@ -15,6 +15,7 @@ import './index.css'
 
 const Application: FC = () => {
   const { theme } = themeStore((state) => state)
+
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme === true ? light : dark}>

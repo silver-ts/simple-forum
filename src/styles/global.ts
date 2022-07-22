@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   
   body {
     -webkit-font-smoothing: antialiased;
+
     &::-webkit-scrollbar {
       background-color: ${({ theme }) =>
         theme === dark && theme.colors.system.tertiary};

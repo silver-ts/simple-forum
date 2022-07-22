@@ -32,6 +32,14 @@ const Home: FC = () => {
     toast.error(error?.message)
   }, [error])
 
+  useEffect(() => {
+    if (post?.title !== undefined) document.title = `Cluster - ${post?.title}`
+
+    return () => {
+      document.title = 'Cluster'
+    }
+  }, [post])
+
   return (
     <PageWrapper>
       <S.Container>
