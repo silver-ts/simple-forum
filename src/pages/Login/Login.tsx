@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import { PageWrapper } from '@pages/PageWrapper'
 import { Button } from '@components/Button'
-import { LOGIN } from '@constants/queries'
+import { LOGIN } from '@constants/mutations'
 import { yupResolver } from '@hookform/resolvers/yup'
 import authStore from '@state/auth/auth'
 import useIsAuthenticated from '@utils/useIsAuthenticated'
@@ -20,7 +20,7 @@ import * as S from './styles'
 const Login: FC = () => {
   const { t } = useTranslation()
 
-  const [mutateFunction, { loading, error }] = useMutation(LOGIN)
+  const [login, { loading, error }] = useMutation(LOGIN)
 
   const { setToken, setUser } = authStore()
 
@@ -37,14 +37,14 @@ const Login: FC = () => {
   } = useForm({ resolver: yupResolver(formSchema) })
 
   const handleClick = useCallback((payload) => {
-    mutateFunction({
+    login({
       variables: { email: payload?.email, password: payload?.password }
     })
       .then((response) => {
         setToken(response.data.login.token)
         setUser(response.data.login.user)
         // TODO: Remove localStorage and replace with zustrand
-        localStorage.setItem('cluster-token', response.data.login)
+        localStorage.setItem('cluster-token', response.data.login.token)
       })
       .then(() => {
         navigate('/')

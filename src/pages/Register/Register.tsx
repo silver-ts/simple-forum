@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import { PageWrapper } from '@pages/PageWrapper'
 import { Button } from '@components/Button'
-import { REGISTER } from '@constants/queries'
+import { REGISTER } from '@constants/mutations'
 import { yupResolver } from '@hookform/resolvers/yup'
 import authStore from '@state/auth/auth'
 import useIsAuthenticated from '@utils/useIsAuthenticated'
@@ -20,7 +20,7 @@ import * as S from './styles'
 const Register: FC = () => {
   const { t } = useTranslation()
 
-  const [mutateFunction, { loading, error }] = useMutation(REGISTER)
+  const [register, { loading, error }] = useMutation(REGISTER)
 
   const { setToken, setUser } = authStore()
 
@@ -37,7 +37,7 @@ const Register: FC = () => {
   } = useForm({ resolver: yupResolver(formSchema) })
 
   const handleClick = useCallback((payload) => {
-    mutateFunction({
+    register({
       variables: {
         email: payload?.email,
         username: payload?.username,
@@ -49,7 +49,7 @@ const Register: FC = () => {
         setToken(response.data.register.token)
         setUser(response.data.register.user)
         // TODO: Remove localStorage and replace with zustrand
-        localStorage.setItem('cluster-token', response.data.register)
+        localStorage.setItem('cluster-token', response.data.register.token)
       })
       .then(() => {
         navigate('/')
