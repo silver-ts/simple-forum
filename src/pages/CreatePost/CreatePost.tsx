@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { HOMEPAGE_POSTS_QUERY } from '@constants/queries'
 import { useMutation } from '@apollo/client'
 import { PageWrapper } from '@pages/PageWrapper'
 import { Button } from '@components/Button'
@@ -29,7 +30,8 @@ const CreatePost: FC = () => {
 
   const handleClick = useCallback((payload) => {
     createPost({
-      variables: { title: payload?.title, body: payload?.body }
+      variables: { title: payload?.title, body: payload?.body },
+      refetchQueries: [HOMEPAGE_POSTS_QUERY]
     }).then((response) => {
       navigate(`/posts/${response?.data?.createPost?.id}`)
     })
@@ -61,6 +63,7 @@ const CreatePost: FC = () => {
               name="body"
               control={control}
               error={errors?.body?.message}
+              style={{ height: '200px' }}
             />
             <Button
               type="submit"

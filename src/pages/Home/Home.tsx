@@ -20,9 +20,7 @@ const Home: FC = () => {
 
   const [isAuthenticated] = useIsAuthenticated()
 
-  const { data, loading, error } = useQuery(HOMEPAGE_POSTS_QUERY, {
-    fetchPolicy: 'cache-and-network'
-  })
+  const { data, loading, error } = useQuery(HOMEPAGE_POSTS_QUERY, {})
 
   const posts = data?.posts || []
 
