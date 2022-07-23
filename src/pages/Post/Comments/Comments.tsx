@@ -23,7 +23,8 @@ const Comments: FC<Props> = (props) => {
   const { user } = props
 
   const { data, loading, error } = useQuery(GET_COMMENTS_BY_ID, {
-    variables: { postId }
+    variables: { postId },
+    fetchPolicy: 'cache-and-network'
   })
 
   useEffect(() => {
