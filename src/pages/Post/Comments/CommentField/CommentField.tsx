@@ -3,14 +3,13 @@ import { Button } from '@components/Button'
 import { Field } from '@components/Field'
 import { ADD_COMMENT } from '@constants/mutations'
 import { GET_COMMENTS_BY_ID } from '@constants/queries'
-import { dark } from '@styles/theme'
 import useIsAuthenticated from '@utils/useIsAuthenticated'
+import useIsTheme from '@utils/useIsTheme'
 import { FC, useCallback, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { useTheme } from 'styled-components'
 
 import * as S from './styles'
 
@@ -22,8 +21,6 @@ const CommentField: FC<Props> = ({ loading }) => {
   const { t } = useTranslation()
 
   const { id: postId } = useParams()
-
-  const theme = useTheme()
 
   const [isAuthenticated] = useIsAuthenticated()
 
@@ -59,6 +56,13 @@ const CommentField: FC<Props> = ({ loading }) => {
     }
   }, [createCommentError])
 
+  const fieldBackgroundColor = useIsTheme('system-jetblack', 'system-grey')
+  const buttonBackgroundColor = useIsTheme(
+    'system-contrast',
+    'social-instagram'
+  )
+  const buttonTextColor = useIsTheme('system-jetblack', 'status-contrast')
+
   return (
     <S.FieldBackground>
       <Field
@@ -66,18 +70,16 @@ const CommentField: FC<Props> = ({ loading }) => {
         control={control}
         name="comment"
         placeholder={t('addYourComment')}
-        backgroundColor={theme === dark ? 'system-jetblack' : 'system-grey'}
+        backgroundColor={fieldBackgroundColor}
       />
       <Button
         label={t('send')}
-        loaderColor={theme === dark ? 'system-jetblack' : 'status-contrast'}
+        loaderColor={buttonTextColor}
         disabled={!watchCommment}
         loading={loading || creating}
         upperCase
-        backgroundColor={
-          theme === dark ? 'system-contrast' : 'social-instagram'
-        }
-        textColor={theme === dark ? 'system-jetblack' : 'status-contrast'}
+        backgroundColor={buttonBackgroundColor}
+        textColor={buttonTextColor}
         onClick={handleSubmit(handleClick)}
       />
     </S.FieldBackground>

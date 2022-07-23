@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@components/Button'
 import { Text } from '@components/Text'
-import { useTheme } from 'styled-components'
-import { dark } from '@styles/theme'
+import useIsTheme from '@utils/useIsTheme'
 import Default from '@assets/images/user-default.jpg'
 import useIsAuthenticated from '@utils/useIsAuthenticated'
 import Logo from '@assets/images/logo.svg'
@@ -24,8 +23,6 @@ const Header: FC = () => {
 
   const navigate = useNavigate()
 
-  const theme = useTheme()
-
   const goTo = useCallback((to: string) => () => navigate(to), [])
 
   const handleClickAvatar = useCallback(() => {
@@ -35,6 +32,8 @@ const Header: FC = () => {
     // TODO: Remove localStorage and replace with zustrand
     localStorage.setItem('cluster-token', undefined)
   }, [])
+
+  const buttonColor = useIsTheme('system-contrast', 'social-instagram')
 
   return (
     <S.Container>
@@ -55,9 +54,7 @@ const Header: FC = () => {
               width={100}
               label={t('login')}
               onClick={goTo('/login')}
-              backgroundColor={
-                theme === dark ? 'system-contrast' : 'social-instagram'
-              }
+              backgroundColor={buttonColor}
               textColor="system-secondary"
             />
           </ShouldRender>

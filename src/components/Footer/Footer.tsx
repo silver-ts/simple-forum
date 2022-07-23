@@ -1,16 +1,14 @@
 import { FC } from 'react'
 import { Text } from '@components/Text'
 import { useTranslation, Trans } from 'react-i18next'
-import { useTheme } from 'styled-components'
-import { dark } from '@styles/theme'
+import useIsTheme from '@utils/useIsTheme'
 
 import * as S from './styles'
 
 const Footer: FC = () => {
   const { t } = useTranslation()
-  const theme = useTheme()
 
-  const textColor = theme === dark ? 'system-contrast' : 'social-instagram'
+  const textColor = useIsTheme('system-contrast', 'social-instagram')
 
   return (
     <S.Container>

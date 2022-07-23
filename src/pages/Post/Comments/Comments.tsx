@@ -3,12 +3,11 @@ import ShouldRender from '@components/ShouldRender'
 import { Text } from '@components/Text'
 import { GET_COMMENTS_BY_ID } from '@constants/queries'
 import { User } from '@constants/types'
-import { dark } from '@styles/theme'
+import useIsTheme from '@utils/useIsTheme'
 import { FC, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { useTheme } from 'styled-components'
 import { Comment } from './Comment'
 import { CommentField } from './CommentField'
 
@@ -18,7 +17,6 @@ type Props = {
 
 const Comments: FC<Props> = (props) => {
   const { t } = useTranslation()
-  const theme = useTheme()
 
   const { id: postId } = useParams()
 
@@ -34,12 +32,14 @@ const Comments: FC<Props> = (props) => {
     }
   }, [error])
 
+  const titleColor = useIsTheme('system-contrast', 'social-instagram')
+
   return (
     <>
       <Text
         style={{ marginTop: '20px' }}
         type="medium-title"
-        color={theme === dark ? 'system-contrast' : 'social-instagram'}
+        color={titleColor}
       >
         {t('comments')}
       </Text>

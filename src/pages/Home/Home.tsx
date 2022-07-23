@@ -6,10 +6,9 @@ import { toast } from 'react-toastify'
 import { HOMEPAGE_POSTS_QUERY } from '@constants/queries'
 import { Post } from '@constants/types'
 import { PageWrapper } from '@pages/PageWrapper'
-import { useTheme } from 'styled-components'
 import ShouldRender from '@components/ShouldRender'
 import { Text } from '@components/Text'
-import { dark } from '@styles/theme'
+import useIsTheme from '@utils/useIsTheme'
 import { PostCard } from './PostCard'
 
 import * as S from './styles'
@@ -21,8 +20,6 @@ const Home: FC = () => {
 
   const posts = data?.posts || []
 
-  const theme = useTheme()
-
   const navigate = useNavigate()
 
   const goTo = useCallback((to: string) => () => navigate(to), [])
@@ -30,6 +27,8 @@ const Home: FC = () => {
   useEffect(() => {
     toast.error(error?.message)
   }, [error])
+
+  const textColor = useIsTheme('system-contrast', 'social-instagram')
 
   return (
     <PageWrapper>
@@ -41,7 +40,7 @@ const Home: FC = () => {
               width: 'clamp(300px, 75%, 1400px)'
             }}
             type="big-title"
-            color={theme === dark ? 'system-contrast' : 'social-instagram'}
+            color={textColor}
           >
             {t('posts')}
           </Text>
