@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import { PageWrapper } from '@pages/PageWrapper'
 import { Button } from '@components/Button'
-import { LOGIN } from '@constants/queries'
+import { REGISTER } from '@constants/queries'
 import { yupResolver } from '@hookform/resolvers/yup'
 import authStore from '@state/auth/auth'
 import useIsAuthenticated from '@utils/useIsAuthenticated'
@@ -17,10 +17,10 @@ import { toast } from 'react-toastify'
 import { formSchema } from './_validations'
 import * as S from './styles'
 
-const Login: FC = () => {
+const Register: FC = () => {
   const { t } = useTranslation()
 
-  const [mutateFunction, { loading, error }] = useMutation(LOGIN)
+  const [mutateFunction, { loading, error }] = useMutation(REGISTER)
 
   const { setToken } = authStore()
 
@@ -38,11 +38,16 @@ const Login: FC = () => {
 
   const handleClick = useCallback((payload) => {
     mutateFunction({
-      variables: { email: payload?.email, password: payload?.password }
+      variables: {
+        email: payload?.email,
+        username: payload?.username,
+        displayName: payload?.displayName,
+        password: payload?.password
+      }
     }).then((response) => {
-      setToken(response.data.login)
+      setToken(response.data.register)
       // TODO: Remove localStorage and replace with zustrand
-      localStorage.setItem('cluster-token', response.data.login)
+      localStorage.setItem('cluster-token', response.data.register)
       navigate('/')
     })
   }, [])
@@ -68,7 +73,7 @@ const Login: FC = () => {
             </Text>
           </ShouldRender>
           <ShouldRender if={!isAuthenticated}>
-            <Text type="big-title">{t('login')}</Text>
+            <Text type="big-title">{t('register')}</Text>
             <S.Form>
               <Field
                 type="email"
@@ -79,6 +84,22 @@ const Login: FC = () => {
                 error={errors?.email?.message}
               />
               <Field
+                type="text"
+                label={t('username')}
+                placeholder={t('yourUsername')}
+                name="username"
+                control={control}
+                error={errors?.username?.message}
+              />
+              <Field
+                type="text"
+                label={t('displayname')}
+                placeholder={t('yourDisplayName')}
+                name="displayName"
+                control={control}
+                error={errors?.displayName?.message}
+              />
+              <Field
                 type="password"
                 label={t('password')}
                 placeholder={t('yourPassword')}
@@ -87,9 +108,18 @@ const Login: FC = () => {
                 control={control}
                 error={errors?.password?.message}
               />
+              <Field
+                type="password"
+                label={t('confirmPassword')}
+                placeholder={t('yourPassword')}
+                hasPasswordEye
+                name="passwordConfirmation"
+                control={control}
+                error={errors?.passwordConfirmation?.message}
+              />
               <Button
                 type="submit"
-                label={t('login')}
+                label={t('register')}
                 width={200}
                 backgroundColor="social-instagram"
                 textColor="status-contrast"
@@ -99,11 +129,11 @@ const Login: FC = () => {
               <Text
                 tag="a"
                 type="small-title"
-                style={{ marginTop: '35px' }}
+                style={{ marginTop: '15px' }}
                 underline
-                onClick={goTo('/register')}
+                onClick={goTo('/login')}
               >
-                {t('dontHaveAccount')}
+                {t('alreadyHaveAccount')}
               </Text>
             </S.Form>
           </ShouldRender>
@@ -113,4 +143,4 @@ const Login: FC = () => {
   )
 }
 
-export default Login
+export default Register

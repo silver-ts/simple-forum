@@ -11,5 +11,17 @@
   "email": "E-mail",
   "password": "Senha",
   "login": "Entrar",
-  "alreadyLogged": "Você já está logado"
+  "alreadyLogged": "Você já está logado",
+  "passwordMatch": "Senhas não batem",
+  "goBackHome": "Ir para home",
+  "username": "Nome de usuário",
+  "displayname": "Nome público",
+  "confirmPassword": "Confirme sua senha",
+  "register": "Criar conta",
+  "alreadyHaveAccount": "Já possui uma conta? Clique aqui",
+  "dontHaveAccount": "Não possui uma conta? Clique aqui",
+  "yourEmail": "Seu e-mail",
+  "yourPassword": "Sua senha",
+  "yourDisplayName": "Seu nome público desejado",
+  "yourUsername": "Seu username desejado"
 }

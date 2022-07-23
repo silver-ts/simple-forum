@@ -10,6 +10,7 @@ import { light, dark } from '@styles/theme'
 import { LanguageSelector } from '@components/LanguageSelector'
 import languageStore from '@state/language/language'
 import { Post } from '@pages/Post'
+import { Register } from '@pages/Register'
 import { Login } from '@pages/Login'
 import { Home } from '@pages/Home'
 
@@ -35,6 +36,7 @@ const Application: FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/posts/:id" element={<Post />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
           <LanguageSelector />
         </BrowserRouter>

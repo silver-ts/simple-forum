@@ -30,6 +30,8 @@ const Header: FC = () => {
 
   const handleClickAvatar = useCallback(() => {
     setToken(undefined)
+    // TODO: Remove localStorage and replace with zustrand
+    localStorage.setItem('cluster-token', undefined)
   }, [])
 
   return (

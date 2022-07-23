@@ -19,8 +19,4 @@ export const Content = styled.div`
 export const Link = styled(Text).attrs({
   type: 'small-title',
   tag: 'a'
-})`
-  &:hover {
-    filter: opacity(0.8);
-  }
-`
+})``

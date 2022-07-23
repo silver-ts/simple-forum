@@ -11,5 +11,17 @@
   "email": "E-mail",
   "password": "Password",
   "login": "Login",
-  "alreadyLogged": "Already logged in"
+  "alreadyLogged": "Already logged in",
+  "passwordMatch": "Passwords don't match",
+  "goBackHome": "Go back to home",
+  "username": "Username",
+  "displayname": "Display name",
+  "confirmPassword": "Confirm your password",
+  "register": "Register",
+  "alreadyHaveAccount": "Already have an account? Login here",
+  "dontHaveAccount": "Dont have an account? Register here",
+  "yourEmail": "Your e-mail",
+  "yourPassword": "Your password",
+  "yourDisplayName": "Your desired display name",
+  "yourUsername": "Your desired username"
 }

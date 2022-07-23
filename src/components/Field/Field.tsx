@@ -84,7 +84,12 @@ const Field: React.FC<FieldProps> = (props) => {
             </Text>
           </ShouldRender>
           <ShouldRender if={error}>
-            <Text color="status-danger" size="12px" style={{ marginTop: 6 }}>
+            <Text
+              color="status-danger"
+              size="12px"
+              weight={600}
+              style={{ marginTop: 6 }}
+            >
               {t(error?.key, error?.values)}
             </Text>
           </ShouldRender>

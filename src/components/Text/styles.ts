@@ -26,4 +26,12 @@ export const Text = styled.div<TextProps & { textColor: string }>`
       -webkit-box-orient: vertical;
     `};
   ${({ onClick }) => onClick && 'cursor: pointer;'};
+
+  ${({ tag }) =>
+    tag === 'a' &&
+    `
+    &:hover {
+      filter: opacity(0.8);
+    }
+  `}
 `
