@@ -34,6 +34,7 @@ const Header: FC = () => {
   }, [])
 
   const buttonColor = useIsTheme('system-contrast', 'social-instagram')
+  const buttonTextColor = useIsTheme('system-secondary', 'status-contrast')
 
   return (
     <S.Container>
@@ -55,7 +56,7 @@ const Header: FC = () => {
               label={t('login')}
               onClick={goTo('/login')}
               backgroundColor={buttonColor}
-              textColor="system-secondary"
+              textColor={buttonTextColor}
             />
           </ShouldRender>
           <ThemeSwitch />
