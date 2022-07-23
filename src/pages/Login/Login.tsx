@@ -22,7 +22,7 @@ const Login: FC = () => {
 
   const [mutateFunction, { loading, error }] = useMutation(LOGIN)
 
-  const { setToken } = authStore()
+  const { setToken, setUser } = authStore()
 
   const [isAuthenticated] = useIsAuthenticated()
 
@@ -40,11 +40,12 @@ const Login: FC = () => {
     mutateFunction({
       variables: { email: payload?.email, password: payload?.password }
     }).then((response) => {
-      setToken(response.data.login)
+      setToken(response.data.login.token)
+      setUser(response.data.login.user)
       // TODO: Remove localStorage and replace with zustrand
       localStorage.setItem('cluster-token', response.data.login)
-      navigate('/')
     })
+    navigate('/')
   }, [])
 
   useEffect(() => {

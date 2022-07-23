@@ -3,6 +3,7 @@ import { Text } from '@components/Text'
 import { Post } from '@constants/types'
 import { useTranslation, Trans } from 'react-i18next'
 import ShouldRender from '@components/ShouldRender'
+import authStore from '@state/auth/auth'
 import useFormattedDistanceToNow from '@utils/useFormattedDistanceToNow'
 
 import * as S from './styles'
@@ -15,6 +16,8 @@ type Props = {
 
 const PostCard: FC<Props> = ({ post, loading, onClick }) => {
   const { t } = useTranslation()
+
+  const { user } = authStore()
 
   return (
     <S.PostCard key={post?.id} onClick={onClick}>
@@ -38,7 +41,18 @@ const PostCard: FC<Props> = ({ post, loading, onClick }) => {
               t={t}
               i18nKey="by"
               values={{ author: post?.author?.displayName }}
-              components={[<Text tag="span" type="big-label" weight={600} />]}
+              components={[
+                <Text
+                  tag="span"
+                  type="big-label"
+                  weight={600}
+                  color={
+                    post?.author?.id === user.id
+                      ? 'social-instagram'
+                      : 'system-contrast'
+                  }
+                />
+              ]}
             />
           </Text>
           <Text loading={loading} shimmerWidth={100} type="big-label">

@@ -10,9 +10,10 @@ import * as S from './styles'
 type Props = {
   post?: Post
   loading: boolean
+  isAuthor: boolean
 }
 
-const Home: FC<Props> = ({ post, loading }) => {
+const Home: FC<Props> = ({ post, loading, isAuthor }) => {
   const { t } = useTranslation()
 
   return (
@@ -58,6 +59,7 @@ const Home: FC<Props> = ({ post, loading }) => {
                 type="super-big-label"
                 tag="span"
                 weight={600}
+                color={isAuthor ? 'social-instagram' : 'system-contrast'}
               />
             ]}
           />

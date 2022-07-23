@@ -10,6 +10,7 @@ export const HOMEPAGE_POSTS_QUERY = gql`
       updatedAt
       author {
         displayName
+        id
       }
       comments {
         comment
@@ -33,6 +34,7 @@ export const GET_POST_BY_ID = gql`
       updatedAt
       author {
         displayName
+        id
       }
       comments {
         comment
@@ -40,6 +42,7 @@ export const GET_POST_BY_ID = gql`
         createdAt
         updatedAt
         user {
+          id
           displayName
         }
       }
@@ -49,7 +52,14 @@ export const GET_POST_BY_ID = gql`
 
 export const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password)
+    login(email: $email, password: $password) {
+      token
+      user {
+        id
+        username
+        displayName
+      }
+    }
   }
 `
 
@@ -65,6 +75,13 @@ export const REGISTER = gql`
       username: $username
       displayName: $displayName
       password: $password
-    )
+    ) {
+      token
+      user {
+        id
+        username
+        displayName
+      }
+    }
   }
 `

@@ -18,7 +18,7 @@ import * as S from './styles'
 const Header: FC = () => {
   const { t } = useTranslation()
 
-  const { setToken } = authStore()
+  const { setToken, setUser } = authStore()
 
   const [isAuthenticated] = useIsAuthenticated()
 
@@ -30,6 +30,8 @@ const Header: FC = () => {
 
   const handleClickAvatar = useCallback(() => {
     setToken(undefined)
+    setUser(undefined)
+    goTo('/')
     // TODO: Remove localStorage and replace with zustrand
     localStorage.setItem('cluster-token', undefined)
   }, [])

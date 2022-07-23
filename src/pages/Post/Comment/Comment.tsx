@@ -9,16 +9,22 @@ import * as S from './styles'
 
 type Props = {
   comment?: CommentType
+  isAuthor?: boolean
   loading: boolean
 }
 
-const Comment: FC<Props> = ({ comment, loading }) => {
+const Comment: FC<Props> = ({ comment, loading, isAuthor }) => {
   const { t } = useTranslation()
 
   return (
     <S.Comment>
       <S.CommentInfo>
-        <Text type="super-big-label" loading={loading} shimmerWidth="300px">
+        <Text
+          type="super-big-label"
+          loading={loading}
+          shimmerWidth="300px"
+          color={isAuthor ? 'social-instagram' : 'system-contrast'}
+        >
           {comment?.user.displayName}{' '}
           <Text
             tag="span"

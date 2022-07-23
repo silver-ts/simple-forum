@@ -22,7 +22,7 @@ const Register: FC = () => {
 
   const [mutateFunction, { loading, error }] = useMutation(REGISTER)
 
-  const { setToken } = authStore()
+  const { setToken, setUser } = authStore()
 
   const [isAuthenticated] = useIsAuthenticated()
 
@@ -45,7 +45,8 @@ const Register: FC = () => {
         password: payload?.password
       }
     }).then((response) => {
-      setToken(response.data.register)
+      setToken(response.data.register.token)
+      setUser(response.data.register.user)
       // TODO: Remove localStorage and replace with zustrand
       localStorage.setItem('cluster-token', response.data.register)
       navigate('/')

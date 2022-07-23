@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Text } from '@components/Text'
 import { useTranslation } from 'react-i18next'
+import authStore from '@state/auth/auth'
 import { GET_POST_BY_ID } from '@constants/queries'
 import { useTheme } from 'styled-components'
 import { dark } from '@styles/theme'
@@ -14,7 +15,7 @@ import { Comment } from './Comment'
 
 import * as S from './styles'
 
-const Home: FC = () => {
+const Post: FC = () => {
   const { t } = useTranslation()
   const { id } = useParams()
   const theme = useTheme()
@@ -24,6 +25,8 @@ const Home: FC = () => {
   })
 
   const post = data?.post || []
+
+  const { user } = authStore()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -45,7 +48,11 @@ const Home: FC = () => {
     <PageWrapper>
       <S.Container>
         <S.Content>
-          <PostContent post={post} loading={loading} />
+          <PostContent
+            post={post}
+            loading={loading}
+            isAuthor={post?.author?.id === user.id}
+          />
         </S.Content>
         <Text
           style={{ marginTop: '20px' }}
@@ -56,7 +63,12 @@ const Home: FC = () => {
         </Text>
         <ShouldRender if={!loading}>
           {post?.comments?.map((comment) => (
-            <Comment loading={loading} comment={comment} />
+            <Comment
+              key={comment?.user?.id}
+              loading={loading}
+              comment={comment}
+              isAuthor={comment?.user?.id === user.id}
+            />
           ))}
         </ShouldRender>
         <ShouldRender if={loading}>
@@ -69,4 +81,4 @@ const Home: FC = () => {
   )
 }
 
-export default Home
+export default Post
