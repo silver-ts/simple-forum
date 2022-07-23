@@ -20,11 +20,7 @@ const Textarea: React.FC<TextAreaProps> = (props: TextAreaProps) => {
     [field?.value]
   )
 
-  const background = useMemo(() => {
-    const color = resolveColor(backgroundColor)
-
-    return color
-  }, [backgroundColor])
+  const background = resolveColor(backgroundColor)
 
   return (
     <S.Container backgroundColor={background}>
