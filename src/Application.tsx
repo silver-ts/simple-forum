@@ -37,8 +37,22 @@ const Application: FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/posts/:id" element={<Post />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route
+              path="/login"
+              element={
+                <ProtectedRoute isAuthPage>
+                  <Login />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <ProtectedRoute isAuthPage>
+                  <Register />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/create"
               element={

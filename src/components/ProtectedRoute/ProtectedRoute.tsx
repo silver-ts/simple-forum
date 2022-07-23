@@ -4,12 +4,17 @@ import { Navigate } from 'react-router-dom'
 
 type Props = {
   children: ReactElement
+  isAuthPage?: boolean
 }
 
-const ProtectedRoute: FC<Props> = ({ children }) => {
+const ProtectedRoute: FC<Props> = ({ children, isAuthPage = false }) => {
   const [isAuthenticated] = useIsAuthenticated()
 
-  if (!isAuthenticated) {
+  if (isAuthenticated && isAuthPage) {
+    return <Navigate to="/" replace />
+  }
+
+  if (!isAuthenticated && !isAuthPage) {
     return <Navigate to="/" replace />
   }
 
