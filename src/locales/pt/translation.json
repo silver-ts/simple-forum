@@ -23,5 +23,8 @@
   "yourEmail": "Seu e-mail",
   "yourPassword": "Sua senha",
   "yourDisplayName": "Seu nome público desejado",
-  "yourUsername": "Seu nome de usuário desejado"
+  "yourUsername": "Seu nome de usuário desejado",
+  "send": "Postar",
+  "addYourComment": "Digite seu comentário",
+  "loginToComment": "Entre com sua conta para comentar!"
 }

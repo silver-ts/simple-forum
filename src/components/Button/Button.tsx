@@ -25,6 +25,7 @@ export type Props = HTMLAttributes<HTMLButtonElement> & {
   loading?: boolean
   disabled?: boolean
   restricted?: boolean
+  loaderColor?: Styles.Colors
   type?: 'button' | 'submit' | 'reset'
 }
 
@@ -45,6 +46,7 @@ const Button: React.FC<Props> = ({
   height,
   rounded,
   loader = 'beat',
+  loaderColor = 'system-contrast',
   type = 'button',
   ...props
 }: Props) => {
@@ -70,18 +72,10 @@ const Button: React.FC<Props> = ({
     >
       <ShouldRender if={loading}>
         <ShouldRender if={loader === 'beat'}>
-          <BeatLoader
-            size={8}
-            color={resolveColor('system-contrast')}
-            loading
-          />
+          <BeatLoader size={8} color={resolveColor(loaderColor)} loading />
         </ShouldRender>
         <ShouldRender if={loader === 'clip'}>
-          <ClipLoader
-            size={20}
-            color={resolveColor('system-contrast')}
-            loading
-          />
+          <ClipLoader size={20} color={resolveColor(loaderColor)} loading />
         </ShouldRender>
       </ShouldRender>
       <ShouldRender if={isVisibleChildren}>{children}</ShouldRender>

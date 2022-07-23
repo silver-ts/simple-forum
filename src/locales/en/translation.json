@@ -23,5 +23,8 @@
   "yourEmail": "Your e-mail",
   "yourPassword": "Your password",
   "yourDisplayName": "Your desired display name",
-  "yourUsername": "Your desired username"
+  "yourUsername": "Your desired username",
+  "send": "send",
+  "addYourComment": "Add your comment",
+  "loginToComment": "Login to post a comment!"
 }

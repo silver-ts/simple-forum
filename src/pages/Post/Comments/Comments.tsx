@@ -1,24 +1,38 @@
+import { useQuery } from '@apollo/client'
 import ShouldRender from '@components/ShouldRender'
 import { Text } from '@components/Text'
-import { Comment as CommentType, User } from '@constants/types'
+import { GET_COMMENTS_BY_ID } from '@constants/queries'
+import { User } from '@constants/types'
 import { dark } from '@styles/theme'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { useTheme } from 'styled-components'
-import { Comment } from '../Comment'
+import { Comment } from './Comment'
+import { CommentField } from './CommentField'
 
 type Props = {
-  loading: boolean
-  comments: CommentType[]
   user?: User
 }
 
 const Comments: FC<Props> = (props) => {
   const { t } = useTranslation()
-
-  const { loading, comments, user } = props
-
   const theme = useTheme()
+
+  const { id: postId } = useParams()
+
+  const { user } = props
+
+  const { data, loading, error } = useQuery(GET_COMMENTS_BY_ID, {
+    variables: { postId }
+  })
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error?.message)
+    }
+  }, [error])
 
   return (
     <>
@@ -29,8 +43,9 @@ const Comments: FC<Props> = (props) => {
       >
         {t('comments')}
       </Text>
+      <CommentField loading={loading} />
       <ShouldRender if={!loading}>
-        {comments?.map((comment) => (
+        {data?.comments?.map((comment) => (
           <Comment
             key={comment?.user?.id}
             loading={loading}

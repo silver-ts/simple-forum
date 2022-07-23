@@ -49,3 +49,18 @@ export const GET_POST_BY_ID = gql`
     }
   }
 `
+
+export const GET_COMMENTS_BY_ID = gql`
+  query GetComments($postId: ID!) {
+    comments(postId: $postId) {
+      comment
+      createdAt
+      updatedAt
+      id
+      user {
+        id
+        displayName
+      }
+    }
+  }
+`

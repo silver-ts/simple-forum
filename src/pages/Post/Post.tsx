@@ -47,7 +47,7 @@ const Post: FC = () => {
             isAuthor={post?.author?.id === user?.id}
           />
         </S.Content>
-        <Comments loading={loading} user={user} comments={post?.comments} />
+        <Comments user={user} />
       </S.Container>
     </PageWrapper>
   )

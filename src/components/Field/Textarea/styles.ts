@@ -1,14 +1,15 @@
 import { Text } from '@components/Text'
 import styled from 'styled-components'
 
-export const Container = styled.div<{
+export const Container = styled.div.attrs({
+  className: 'textArea__container'
+})<{
   backgroundColor: string
 }>`
   display: flex;
   flex: 1;
   height: auto;
   width: 100%;
-  border-radius: 10px;
   background-color: ${({ backgroundColor }) => backgroundColor};
   padding: 15px 20px 10px 20px;
   flex-direction: column;
@@ -17,14 +18,19 @@ export const Container = styled.div<{
 `
 
 export const TextArea = styled.textarea`
-  min-height: 50px;
+  min-height: 80px;
   width: 100%;
   resize: none;
   border: none;
   background-color: transparent;
-  font-size: 15px;
+  font-size: 16px;
   font-family: 'Roboto';
-  color: ${({ theme }) => theme.colors.system.grey};
+  color: ${({ theme }) => theme.colors.system.contrast};
+
+  :focus {
+    border: none;
+    outline: none;
+  }
 
   ::placeholder {
     color: ${({ theme }) => theme.colors.system.contrast};
