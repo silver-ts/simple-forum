@@ -49,3 +49,11 @@ export const DELETE_COMMENT_BY_ID = gql`
     deleteComment(id: $id)
   }
 `
+
+export const CREATE_POST = gql`
+  mutation CreatePost($title: String!, $body: String!) {
+    createPost(title: $title, body: $body) {
+      id
+    }
+  }
+`

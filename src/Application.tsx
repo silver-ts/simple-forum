@@ -8,6 +8,8 @@ import { ApolloProvider } from '@apollo/client'
 import { GlobalStyle } from '@styles/global'
 import { light, dark } from '@styles/theme'
 import { LanguageSelector } from '@components/LanguageSelector'
+import { ProtectedRoute } from '@components/ProtectedRoute'
+import { CreatePost } from '@pages/CreatePost'
 import languageStore from '@state/language/language'
 import { Post } from '@pages/Post'
 import { Register } from '@pages/Register'
@@ -37,6 +39,14 @@ const Application: FC = () => {
             <Route path="/posts/:id" element={<Post />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route
+              path="/create"
+              element={
+                <ProtectedRoute>
+                  <CreatePost />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <LanguageSelector />
         </BrowserRouter>

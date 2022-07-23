@@ -14,4 +14,9 @@ export const Input = styled.input<{ backgroundColor: string }>`
   font-size: 15px;
   padding: 0 20px;
   font-family: 'Roboto';
+
+  :focus {
+    border: none;
+    outline: none;
+  }
 `

@@ -18,3 +18,11 @@ export const Content = styled.div`
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 20px 0;
 `
+
+export const TitleContainer = styled.div`
+  width: clamp(300px, 75%, 1400px);
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`

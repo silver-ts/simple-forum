@@ -26,5 +26,11 @@
   "yourUsername": "Your desired username",
   "send": "send",
   "addYourComment": "Add your comment",
-  "loginToComment": "Login to post a comment!"
+  "loginToComment": "Login to post a comment!",
+  "createPost": "Create a post",
+  "postTitle": "Post title",
+  "postTitlePlaceholder": "A captivating title",
+  "postContent": "Your post content",
+  "postContentPlaceholder": "What do you want to say?",
+  "create": "Create"
 }

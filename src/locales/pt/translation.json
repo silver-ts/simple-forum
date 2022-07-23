@@ -26,5 +26,11 @@
   "yourUsername": "Seu nome de usuário desejado",
   "send": "Postar",
   "addYourComment": "Digite seu comentário",
-  "loginToComment": "Entre com sua conta para comentar!"
+  "loginToComment": "Entre com sua conta para comentar!",
+  "createPost": "Criar uma publicação",
+  "postTitle": "Título",
+  "postTitlePlaceholder": "Um título cativante",
+  "postContent": "Conteúdo",
+  "postContentPlaceholder": "O que você quer compartilhar?",
+  "create": "Criar"
 }

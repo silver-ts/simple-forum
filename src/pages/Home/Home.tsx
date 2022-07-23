@@ -4,9 +4,11 @@ import { useQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { HOMEPAGE_POSTS_QUERY } from '@constants/queries'
+import useIsAuthenticated from '@utils/useIsAuthenticated'
 import { Post } from '@constants/types'
 import { PageWrapper } from '@pages/PageWrapper'
 import ShouldRender from '@components/ShouldRender'
+import { Button } from '@components/Button'
 import { Text } from '@components/Text'
 import useIsTheme from '@utils/useIsTheme'
 import { PostCard } from './PostCard'
@@ -16,7 +18,11 @@ import * as S from './styles'
 const Home: FC = () => {
   const { t } = useTranslation()
 
-  const { data, loading, error } = useQuery(HOMEPAGE_POSTS_QUERY)
+  const [isAuthenticated] = useIsAuthenticated()
+
+  const { data, loading, error } = useQuery(HOMEPAGE_POSTS_QUERY, {
+    fetchPolicy: 'cache-and-network'
+  })
 
   const posts = data?.posts || []
 
@@ -29,21 +35,27 @@ const Home: FC = () => {
   }, [error])
 
   const textColor = useIsTheme('system-contrast', 'social-instagram')
+  const buttonColor = useIsTheme('system-contrast', 'social-instagram')
+  const buttonTextColor = useIsTheme('system-secondary', 'status-contrast')
 
   return (
     <PageWrapper>
       <S.Container>
         <S.Content>
-          <Text
-            style={{
-              marginTop: '20px',
-              width: 'clamp(300px, 75%, 1400px)'
-            }}
-            type="big-title"
-            color={textColor}
-          >
-            {t('posts')}
-          </Text>
+          <S.TitleContainer>
+            <Text type="big-title" color={textColor}>
+              {t('posts')}
+            </Text>
+            <ShouldRender if={isAuthenticated}>
+              <Button
+                label={t('create')}
+                onClick={goTo('create')}
+                width="150px"
+                backgroundColor={buttonColor}
+                textColor={buttonTextColor}
+              />
+            </ShouldRender>
+          </S.TitleContainer>
           <ShouldRender if={!loading}>
             {posts?.map((post: Post) => (
               <PostCard
