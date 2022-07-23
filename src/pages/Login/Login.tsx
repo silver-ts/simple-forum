@@ -39,13 +39,16 @@ const Login: FC = () => {
   const handleClick = useCallback((payload) => {
     mutateFunction({
       variables: { email: payload?.email, password: payload?.password }
-    }).then((response) => {
-      setToken(response.data.login.token)
-      setUser(response.data.login.user)
-      // TODO: Remove localStorage and replace with zustrand
-      localStorage.setItem('cluster-token', response.data.login)
     })
-    navigate('/')
+      .then((response) => {
+        setToken(response.data.login.token)
+        setUser(response.data.login.user)
+        // TODO: Remove localStorage and replace with zustrand
+        localStorage.setItem('cluster-token', response.data.login)
+      })
+      .then(() => {
+        navigate('/')
+      })
   }, [])
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { HOMEPAGE_POSTS_QUERY } from '@constants/queries'
+import { Post } from '@constants/types'
 import { PageWrapper } from '@pages/PageWrapper'
 import { useTheme } from 'styled-components'
 import ShouldRender from '@components/ShouldRender'
@@ -45,8 +46,9 @@ const Home: FC = () => {
             {t('posts')}
           </Text>
           <ShouldRender if={!loading}>
-            {posts?.map((post) => (
+            {posts?.map((post: Post) => (
               <PostCard
+                key={post?.id}
                 loading={loading}
                 post={post}
                 onClick={goTo(`posts/${post?.id}`)}

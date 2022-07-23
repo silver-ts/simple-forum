@@ -1,11 +1,6 @@
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
-
-type User = {
-  displayName: string
-  username: string
-  id: string
-}
+import { User } from '@constants/types'
 
 type State = {
   token: string | undefined

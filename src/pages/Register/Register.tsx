@@ -44,13 +44,16 @@ const Register: FC = () => {
         displayName: payload?.displayName,
         password: payload?.password
       }
-    }).then((response) => {
-      setToken(response.data.register.token)
-      setUser(response.data.register.user)
-      // TODO: Remove localStorage and replace with zustrand
-      localStorage.setItem('cluster-token', response.data.register)
-      navigate('/')
     })
+      .then((response) => {
+        setToken(response.data.register.token)
+        setUser(response.data.register.user)
+        // TODO: Remove localStorage and replace with zustrand
+        localStorage.setItem('cluster-token', response.data.register)
+      })
+      .then(() => {
+        navigate('/')
+      })
   }, [])
 
   useEffect(() => {
