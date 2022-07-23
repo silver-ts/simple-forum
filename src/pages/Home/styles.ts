@@ -17,6 +17,11 @@ export const Content = styled.div`
   background: ${({ theme }) => theme.colors.system.secondary};
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 20px 0;
+
+  @media (max-width: 415px) {
+    background: transparent;
+    box-shadow: none;
+  }
 `
 
 export const TitleContainer = styled.div`

@@ -41,7 +41,11 @@ const Header: FC = () => {
       <S.Content>
         <S.LogoContainer onClick={goTo('/')}>
           <S.Logo src={Logo} />
-          <Text color="social-instagram" type="big-title">
+          <Text
+            color="social-instagram"
+            type="big-title"
+            className="header-logo-text"
+          >
             Cluster
           </Text>
         </S.LogoContainer>

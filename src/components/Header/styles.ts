@@ -25,6 +25,12 @@ export const LogoContainer = styled.div`
     filter: invert(32%) sepia(98%) saturate(950%) hue-rotate(289deg)
       brightness(81%) contrast(97%);
   }
+
+  .header-logo-text {
+    @media (max-width: 415px) {
+      display: none;
+    }
+  }
 `
 
 export const Logo = styled(Image).attrs({

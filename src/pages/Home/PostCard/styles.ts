@@ -9,6 +9,11 @@ export const PostCard = styled.div`
   transition: 300ms;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
+  @media (max-width: 415px) {
+    box-shadow: rgba(17, 17, 26, 0.2) 0px 1px 0px,
+      rgba(17, 17, 26, 0.3) 0px 0px 8px;
+  }
+
   :hover {
     transform: scale(1.05);
   }
