@@ -43,3 +43,9 @@ export const ADD_COMMENT = gql`
     }
   }
 `
+
+export const DELETE_COMMENT_BY_ID = gql`
+  mutation DeleteComment($id: ID!) {
+    deleteComment(id: $id)
+  }
+`

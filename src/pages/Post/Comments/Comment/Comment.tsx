@@ -1,9 +1,13 @@
-import { FC } from 'react'
+import { FC, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Text } from '@components/Text'
+import { useMutation } from '@apollo/client'
 import useFormattedDistanceToNow from '@utils/useFormattedDistanceToNow'
+import { toast } from 'react-toastify'
 import ShouldRender from '@components/ShouldRender'
 import { Comment as CommentType } from '@constants/types'
+import { GET_COMMENTS_BY_ID } from '@constants/queries'
+import { DELETE_COMMENT_BY_ID } from '@constants/mutations'
 
 import * as S from './styles'
 
@@ -15,6 +19,28 @@ type Props = {
 
 const Comment: FC<Props> = ({ comment, loading, isAuthor }) => {
   const { t } = useTranslation()
+
+  const [deleteComment, { loading: deleting, error }] = useMutation(
+    DELETE_COMMENT_BY_ID,
+    {
+      optimisticResponse: true,
+      refetchQueries: [GET_COMMENTS_BY_ID]
+    }
+  )
+
+  const handleClick = useCallback(() => {
+    deleteComment({
+      variables: {
+        id: comment?.id
+      }
+    })
+  }, [])
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error?.message)
+    }
+  }, [error])
 
   return (
     <S.Comment>
@@ -57,6 +83,18 @@ const Comment: FC<Props> = ({ comment, loading, isAuthor }) => {
           {comment?.comment}
         </Text>
       </S.CommentText>
+      <ShouldRender if={isAuthor && !deleting}>
+        <Text
+          type="medium-label"
+          loading={loading}
+          shimmerWidth={100}
+          color="status-danger"
+          style={{ cursor: 'pointer' }}
+          onClick={handleClick}
+        >
+          Delete
+        </Text>
+      </ShouldRender>
     </S.Comment>
   )
 }
