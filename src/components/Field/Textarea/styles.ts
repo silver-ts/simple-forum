@@ -31,10 +31,6 @@ export const TextArea = styled.textarea`
     border: none;
     outline: none;
   }
-
-  ::placeholder {
-    color: ${({ theme }) => theme.colors.system.contrast};
-  }
 `
 
 export const CharactersLeftContainer = styled.div`
