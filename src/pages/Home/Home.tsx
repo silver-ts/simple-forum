@@ -31,6 +31,15 @@ const Home: FC = () => {
 
   const goTo = useCallback((to: string) => () => navigate(to), [])
 
+  const handleCreatePostButton = useCallback(() => {
+    if (isAuthenticated) {
+      navigate('/create')
+    }
+    if (!isAuthenticated) {
+      toast.info('Login to create a post!')
+    }
+  }, [])
+
   useEffect(() => {
     toast.error(error?.message)
   }, [error])
@@ -45,17 +54,16 @@ const Home: FC = () => {
             <Text tag="h1" type="big-title" color={textColor}>
               {t('posts')}
             </Text>
-            <ShouldRender if={isAuthenticated}>
-              <Button
-                backgroundColor="social-instagram"
-                onClick={goTo('create')}
-                width="75px"
-              >
-                <S.ButtonContent>
-                  <MdOutlineAdd color="white" size={20} />
-                </S.ButtonContent>
-              </Button>
-            </ShouldRender>
+            <Button
+              loading={loading}
+              backgroundColor="social-instagram"
+              onClick={handleCreatePostButton}
+              width="75px"
+            >
+              <S.ButtonContent>
+                <MdOutlineAdd color="white" size={20} />
+              </S.ButtonContent>
+            </Button>
           </S.TitleContainer>
           <ShouldRender if={!loading}>
             {posts?.map((post: Post) => (

@@ -30,6 +30,7 @@ export const DeleteText = styled(Text).attrs({
   color: 'social-instagram'
 })`
   cursor: pointer;
+  width: fit-content;
 
   &:hover {
     filter: opacity(0.8);
