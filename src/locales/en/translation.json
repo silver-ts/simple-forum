@@ -36,5 +36,8 @@
   "delete": "Delete",
   "sharePostText": "Look at this great post",
   "pageNotFound": "Page not found",
-  "loginToPost": "Login to create a post"
+  "loginToPost": "Login to create a post",
+  "cancel": "Cancel",
+  "update": "Update",
+  "edit": "Edit"
 }

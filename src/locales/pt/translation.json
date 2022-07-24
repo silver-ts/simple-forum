@@ -36,5 +36,8 @@
   "delete": "Deletar",
   "sharePostText": "Olhe que postagem interessante",
   "pageNotFound": "Página não encontrada",
-  "loginToPost": "Entre com sua conta para criar um post"
+  "loginToPost": "Entre com sua conta para criar um post",
+  "cancel": "Cancelar",
+  "update": "Salvar",
+  "edit": "Editar"
 }

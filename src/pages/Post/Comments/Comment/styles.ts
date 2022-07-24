@@ -24,7 +24,13 @@ export const CommentText = styled.div`
   width: 100%;
 `
 
-export const DeleteText = styled(Text).attrs({
+export const ActionsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`
+
+export const ActionText = styled(Text).attrs({
   type: 'medium-label',
   shimmerWidth: 100,
   color: 'social-instagram'

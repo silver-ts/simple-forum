@@ -38,7 +38,7 @@ const Home: FC = () => {
     if (!isAuthenticated) {
       toast.info(t('loginToPost'))
     }
-  }, [])
+  }, [isAuthenticated])
 
   useEffect(() => {
     toast.error(error?.message)

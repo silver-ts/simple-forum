@@ -15,3 +15,10 @@ export const FieldBackground = styled.div`
     }
   }
 `
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+`
