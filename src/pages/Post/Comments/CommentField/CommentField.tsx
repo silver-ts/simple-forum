@@ -121,7 +121,9 @@ const CommentField: FC<Props> = ({
           label={isEdit ? t('update') : t('send')}
           className="post-comment-button"
           loaderColor={buttonTextColor}
-          disabled={!watchCommment}
+          disabled={
+            !watchCommment || (isEdit && watchCommment === comment.comment)
+          }
           loading={loading || creating || editing}
           upperCase
           backgroundColor={buttonBackgroundColor}
