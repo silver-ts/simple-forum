@@ -33,5 +33,6 @@
   "postContent": "Conteúdo",
   "postContentPlaceholder": "O que você quer compartilhar?",
   "create": "Criar",
-  "delete": "Deletar"
+  "delete": "Deletar",
+  "sharePostText": "Olhe que postagem interessante!"
 }

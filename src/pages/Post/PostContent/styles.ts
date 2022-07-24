@@ -18,6 +18,12 @@ export const PostInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  h1 {
+    @media (max-width: 600px) {
+      font-size: 2rem;
+    }
+  }
 `
 
 export const PostDates = styled.div`

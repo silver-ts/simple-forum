@@ -33,5 +33,6 @@
   "postContent": "Your post content",
   "postContentPlaceholder": "What do you want to say?",
   "create": "Create",
-  "delete": "Delete"
+  "delete": "Delete",
+  "sharePostText": "Look at this great post!"
 }

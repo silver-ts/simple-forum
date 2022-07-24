@@ -11,6 +11,7 @@ import { GET_COMMENTS_BY_ID } from '@constants/queries'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+import { ShareButtons } from './ShareButtons'
 import * as S from './styles'
 
 type Props = {
@@ -107,6 +108,9 @@ const Home: FC<Props> = ({ post, loading: postLoading, isAuthor }) => {
           {post?.body}
         </Text>
       </S.PostBodyContainer>
+
+      <ShareButtons disabled={loading} postTitle={post?.title} />
+
       <ShouldRender if={isAuthor}>
         <Button
           backgroundColor="social-instagram"

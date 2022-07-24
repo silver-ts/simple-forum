@@ -6,6 +6,10 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   min-height: 85vh;
+
+  @media (max-width: 425px) {
+    padding: 40px 20px;
+  }
 `
 
 export const Content = styled.div`
