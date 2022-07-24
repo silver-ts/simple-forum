@@ -71,7 +71,6 @@ const ShareButtons: FC<Props> = ({ disabled, postTitle }) => {
       </TelegramShareButton>
       <TwitterShareButton
         title={postTitle}
-        via="Cluster"
         hashtags={['cluster']}
         disabled={disabled}
         url={window.location.href}
