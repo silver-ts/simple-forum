@@ -34,5 +34,6 @@
   "postContentPlaceholder": "O que você quer compartilhar?",
   "create": "Criar",
   "delete": "Deletar",
-  "sharePostText": "Olhe que postagem interessante!"
+  "sharePostText": "Olhe que postagem interessante!",
+  "pageNotFound": "Página não encontrada"
 }

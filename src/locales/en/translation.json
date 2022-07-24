@@ -34,5 +34,6 @@
   "postContentPlaceholder": "What do you want to say?",
   "create": "Create",
   "delete": "Delete",
-  "sharePostText": "Look at this great post!"
+  "sharePostText": "Look at this great post!",
+  "pageNotFound": "Page not found"
 }

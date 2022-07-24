@@ -9,11 +9,12 @@ import { GlobalStyle } from '@styles/global'
 import { light, dark } from '@styles/theme'
 import { LanguageSelector } from '@components/LanguageSelector'
 import { ProtectedRoute } from '@components/ProtectedRoute'
-import { CreatePost } from '@pages/CreatePost'
 import languageStore from '@state/language/language'
+import { CreatePost } from '@pages/CreatePost'
 import { Post } from '@pages/Post'
 import { Register } from '@pages/Register'
 import { Login } from '@pages/Login'
+import { Error } from '@pages/Error'
 import { Home } from '@pages/Home'
 
 import client from './api/apollo-client'
@@ -61,6 +62,7 @@ const Application: FC = () => {
                 </ProtectedRoute>
               }
             />
+            <Route path="/*" element={<Error />} />
           </Routes>
           <LanguageSelector />
         </BrowserRouter>
