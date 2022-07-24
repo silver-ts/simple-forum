@@ -36,7 +36,7 @@ const Home: FC = () => {
       navigate('/create')
     }
     if (!isAuthenticated) {
-      toast.info('Login to create a post!')
+      toast.info(t('loginToPost'))
     }
   }, [])
 

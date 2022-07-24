@@ -35,5 +35,6 @@
   "create": "Criar",
   "delete": "Deletar",
   "sharePostText": "Olhe que postagem interessante!",
-  "pageNotFound": "Página não encontrada"
+  "pageNotFound": "Página não encontrada",
+  "loginToPost": "Entre com sua conta para criar um post!"
 }
