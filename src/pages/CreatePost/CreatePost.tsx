@@ -45,7 +45,14 @@ const CreatePost: FC = () => {
     <PageWrapper noFooter>
       <S.Container>
         <S.Content>
-          <Text type="big-title">{t('createPost')}</Text>
+          <Text
+            type="big-title"
+            tag="h1"
+            align="center"
+            style={{ margin: '0 10px', lineHeight: 1.1 }}
+          >
+            {t('createPost')}
+          </Text>
           <S.Form>
             <Field
               type="text"

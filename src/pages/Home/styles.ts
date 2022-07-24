@@ -30,4 +30,17 @@ export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 495px) {
+    h1 {
+      font-size: 2.75rem;
+    }
+  }
+`
+
+export const ButtonContent = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `

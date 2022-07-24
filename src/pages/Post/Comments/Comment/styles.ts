@@ -1,3 +1,4 @@
+import { Text } from '@components/Text'
 import styled from 'styled-components'
 
 export const Comment = styled.div`
@@ -21,4 +22,16 @@ export const CommentInfo = styled.div`
 
 export const CommentText = styled.div`
   width: 100%;
+`
+
+export const DeleteText = styled(Text).attrs({
+  type: 'medium-label',
+  shimmerWidth: 100,
+  color: 'social-instagram'
+})`
+  cursor: pointer;
+
+  &:hover {
+    filter: opacity(0.8);
+  }
 `

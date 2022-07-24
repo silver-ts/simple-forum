@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { MdOutlineDelete } from 'react-icons/md'
 
 export const PostText = styled.div`
   margin: 40px;
@@ -28,4 +29,16 @@ export const PostDates = styled.div`
 export const PostBodyContainer = styled.div`
   width: 100%;
   padding: 20px 0;
+`
+
+export const DeleteIcon = styled(MdOutlineDelete).attrs({
+  color: 'white',
+  size: 20
+})``
+
+export const ButtonContent = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `

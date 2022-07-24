@@ -1,9 +1,15 @@
-import { FC } from 'react'
+import { FC, useCallback, useEffect } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
 import useFormattedDistanceToNow from '@utils/useFormattedDistanceToNow'
 import ShouldRender from '@components/ShouldRender'
 import { Post } from '@constants/types'
+import { Button } from '@components/Button'
 import { Text } from '@components/Text'
+import { useMutation } from '@apollo/client'
+import { DELETE_POST_BY_ID } from '@constants/mutations'
+import { GET_COMMENTS_BY_ID } from '@constants/queries'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import * as S from './styles'
 
@@ -13,13 +19,37 @@ type Props = {
   isAuthor: boolean
 }
 
-const Home: FC<Props> = ({ post, loading, isAuthor }) => {
+const Home: FC<Props> = ({ post, loading: postLoading, isAuthor }) => {
   const { t } = useTranslation()
+
+  const [deletePost, { loading: deleting, error: deleteError }] = useMutation(
+    DELETE_POST_BY_ID,
+    { refetchQueries: [GET_COMMENTS_BY_ID] }
+  )
+
+  const loading = deleting || postLoading
+
+  const navigate = useNavigate()
+
+  const handleClickDelete = useCallback(() => {
+    deletePost({
+      variables: {
+        postId: post?.id
+      }
+    }).then(() => navigate('/'))
+  }, [])
+
+  useEffect(() => {
+    if (deleteError) {
+      toast.error(deleteError?.message)
+    }
+  }, [deleteError])
 
   return (
     <S.PostText>
       <S.PostInfo>
         <Text
+          tag="h1"
           loading={loading}
           shimmerWidth="clamp(250px, 50%, 550px)"
           type="big-title"
@@ -77,6 +107,18 @@ const Home: FC<Props> = ({ post, loading, isAuthor }) => {
           {post?.body}
         </Text>
       </S.PostBodyContainer>
+      <ShouldRender if={isAuthor}>
+        <Button
+          backgroundColor="social-instagram"
+          width="75px"
+          onClick={handleClickDelete}
+          loading={loading}
+        >
+          <S.ButtonContent>
+            <S.DeleteIcon />
+          </S.ButtonContent>
+        </Button>
+      </ShouldRender>
     </S.PostText>
   )
 }

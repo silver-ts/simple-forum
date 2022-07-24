@@ -23,6 +23,12 @@ export const PostHeader = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @media (max-width: 495px) {
+    h2 {
+      font-size: 1.75rem;
+    }
+  }
 `
 
 export const UserAndDateContainer = styled.div`

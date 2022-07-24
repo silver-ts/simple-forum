@@ -39,6 +39,7 @@ const Comments: FC<Props> = (props) => {
     <>
       <Text
         style={{ marginTop: '20px' }}
+        tag="h2"
         type="medium-title"
         color={titleColor}
       >

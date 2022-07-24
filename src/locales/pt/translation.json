@@ -32,5 +32,6 @@
   "postTitlePlaceholder": "Um título cativante",
   "postContent": "Conteúdo",
   "postContentPlaceholder": "O que você quer compartilhar?",
-  "create": "Criar"
+  "create": "Criar",
+  "delete": "Deletar"
 }

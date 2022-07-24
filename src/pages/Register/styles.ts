@@ -20,4 +20,8 @@ export const Form = styled.div`
   flex-direction: column;
   gap: 20px;
   margin-top: 40px;
+
+  @media (max-width: 340px) {
+    width: 100%;
+  }
 `

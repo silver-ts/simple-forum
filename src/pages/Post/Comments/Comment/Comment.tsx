@@ -84,16 +84,9 @@ const Comment: FC<Props> = ({ comment, loading, isAuthor }) => {
         </Text>
       </S.CommentText>
       <ShouldRender if={isAuthor && !deleting}>
-        <Text
-          type="medium-label"
-          loading={loading}
-          shimmerWidth={100}
-          color="status-danger"
-          style={{ cursor: 'pointer' }}
-          onClick={handleClick}
-        >
-          Delete
-        </Text>
+        <S.DeleteText loading={loading} onClick={handleClick}>
+          {t('delete')}
+        </S.DeleteText>
       </ShouldRender>
     </S.Comment>
   )

@@ -23,8 +23,9 @@ const PostCard: FC<Props> = ({ post, loading, onClick }) => {
     <S.PostCard key={post?.id} onClick={onClick}>
       <S.PostHeader>
         <Text
+          tag="h2"
           loading={loading}
-          shimmerWidth={300}
+          shimmerWidth="55%"
           type="medium-title"
           style={{ lineHeight: 1.1 }}
         >

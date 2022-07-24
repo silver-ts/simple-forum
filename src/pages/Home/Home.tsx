@@ -1,6 +1,7 @@
 import { FC, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from '@apollo/client'
+import { MdOutlineAdd } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { HOMEPAGE_POSTS_QUERY } from '@constants/queries'
@@ -20,7 +21,9 @@ const Home: FC = () => {
 
   const [isAuthenticated] = useIsAuthenticated()
 
-  const { data, loading, error } = useQuery(HOMEPAGE_POSTS_QUERY, {})
+  const { data, loading, error } = useQuery(HOMEPAGE_POSTS_QUERY, {
+    fetchPolicy: 'cache-and-network'
+  })
 
   const posts = data?.posts || []
 
@@ -33,25 +36,25 @@ const Home: FC = () => {
   }, [error])
 
   const textColor = useIsTheme('system-contrast', 'social-instagram')
-  const buttonColor = useIsTheme('system-contrast', 'social-instagram')
-  const buttonTextColor = useIsTheme('system-secondary', 'status-contrast')
 
   return (
     <PageWrapper>
       <S.Container>
         <S.Content>
           <S.TitleContainer>
-            <Text type="big-title" color={textColor}>
+            <Text tag="h1" type="big-title" color={textColor}>
               {t('posts')}
             </Text>
             <ShouldRender if={isAuthenticated}>
               <Button
-                label={t('create')}
+                backgroundColor="social-instagram"
                 onClick={goTo('create')}
-                width="150px"
-                backgroundColor={buttonColor}
-                textColor={buttonTextColor}
-              />
+                width="75px"
+              >
+                <S.ButtonContent>
+                  <MdOutlineAdd color="white" size={20} />
+                </S.ButtonContent>
+              </Button>
             </ShouldRender>
           </S.TitleContainer>
           <ShouldRender if={!loading}>

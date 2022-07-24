@@ -74,6 +74,7 @@ const CommentField: FC<Props> = ({ loading }) => {
       />
       <Button
         label={t('send')}
+        className="post-comment-button"
         loaderColor={buttonTextColor}
         disabled={!watchCommment}
         loading={loading || creating}

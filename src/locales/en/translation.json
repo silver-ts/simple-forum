@@ -32,5 +32,6 @@
   "postTitlePlaceholder": "A captivating title",
   "postContent": "Your post content",
   "postContentPlaceholder": "What do you want to say?",
-  "create": "Create"
+  "create": "Create",
+  "delete": "Delete"
 }

@@ -68,7 +68,9 @@ const Login: FC = () => {
             </Text>
           </ShouldRender>
           <ShouldRender if={!isAuthenticated}>
-            <Text type="big-title">{t('login')}</Text>
+            <Text tag="h1" type="big-title">
+              {t('login')}
+            </Text>
             <S.Form>
               <Field
                 type="email"

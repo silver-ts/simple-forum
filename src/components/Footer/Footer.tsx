@@ -13,7 +13,12 @@ const Footer: FC = () => {
   return (
     <S.Container>
       <S.Content>
-        <Text type="small-title" color={textColor}>
+        <Text
+          type="small-title"
+          color={textColor}
+          align="center"
+          style={{ lineHeight: 1.3 }}
+        >
           <Trans
             t={t}
             i18nKey="poweredByClusters"

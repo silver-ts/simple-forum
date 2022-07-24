@@ -73,7 +73,9 @@ const Register: FC = () => {
             </Text>
           </ShouldRender>
           <ShouldRender if={!isAuthenticated}>
-            <Text type="big-title">{t('register')}</Text>
+            <Text tag="h1" type="big-title">
+              {t('register')}
+            </Text>
             <S.Form>
               <Field
                 type="email"

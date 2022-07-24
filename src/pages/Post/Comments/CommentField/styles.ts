@@ -8,4 +8,10 @@ export const FieldBackground = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
+
+  .post-comment-button {
+    @media (max-width: 475px) {
+      width: 100%;
+    }
+  }
 `
