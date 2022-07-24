@@ -8,7 +8,7 @@ import { Text } from '@components/Text'
 import { useMutation } from '@apollo/client'
 import { DELETE_POST_BY_ID } from '@constants/mutations'
 import { GET_COMMENTS_BY_ID } from '@constants/queries'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { ShareButtons } from './ShareButtons'
@@ -20,13 +20,15 @@ type Props = {
   isAuthor: boolean
 }
 
-const Home: FC<Props> = ({ post, loading: postLoading, isAuthor }) => {
+const PostContent: FC<Props> = ({ post, loading: postLoading, isAuthor }) => {
   const { t } = useTranslation()
 
   const [deletePost, { loading: deleting, error: deleteError }] = useMutation(
     DELETE_POST_BY_ID,
     { refetchQueries: [GET_COMMENTS_BY_ID] }
   )
+
+  const { id } = useParams()
 
   const loading = deleting || postLoading
 
@@ -35,7 +37,7 @@ const Home: FC<Props> = ({ post, loading: postLoading, isAuthor }) => {
   const handleClickDelete = useCallback(() => {
     deletePost({
       variables: {
-        postId: post?.id
+        postId: id
       }
     }).then(() => navigate('/'))
   }, [])
@@ -127,4 +129,4 @@ const Home: FC<Props> = ({ post, loading: postLoading, isAuthor }) => {
   )
 }
 
-export default Home
+export default PostContent

@@ -26,7 +26,7 @@
   "yourUsername": "Your desired username",
   "send": "send",
   "addYourComment": "Add your comment",
-  "loginToComment": "Login to post a comment!",
+  "loginToComment": "Login to post a comment",
   "createPost": "Create a post",
   "postTitle": "Post title",
   "postTitlePlaceholder": "A captivating title",
@@ -34,7 +34,7 @@
   "postContentPlaceholder": "What do you want to say?",
   "create": "Create",
   "delete": "Delete",
-  "sharePostText": "Look at this great post!",
+  "sharePostText": "Look at this great post",
   "pageNotFound": "Page not found",
-  "loginToPost": "Login to create a post!"
+  "loginToPost": "Login to create a post"
 }
