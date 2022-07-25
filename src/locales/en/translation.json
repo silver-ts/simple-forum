@@ -8,6 +8,7 @@
   "required": "Required",
   "emailInvalid": "Not a valid e-mail",
   "min": "Minimum of {{min}} characters",
+  "max": "Maximum of {{max}} characters",
   "email": "E-mail",
   "password": "Password",
   "login": "Login",
@@ -39,5 +40,7 @@
   "loginToPost": "Login to create a post",
   "cancel": "Cancel",
   "update": "Update",
-  "edit": "Edit"
+  "edit": "Edit",
+  "editPostTitlePlaceholder": "Update your post's title",
+  "editPostBodyPlaceholder": "Update your post's content"
 }

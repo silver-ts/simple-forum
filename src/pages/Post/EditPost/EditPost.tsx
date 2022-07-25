@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@components/Button'
 import { Field } from '@components/Field'
 import { UPDATE_POST_BY_ID } from '@constants/mutations'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { GET_POST_BY_ID } from '@constants/queries'
 import { Post } from '@constants/types'
 import useIsTheme from '@utils/useIsTheme'
@@ -11,6 +12,7 @@ import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+import { formSchema } from './_validations'
 import * as S from './styles'
 
 type Props = {
@@ -30,7 +32,15 @@ const EditPost: FC<Props> = ({ post, setIsEditing }) => {
     }
   )
 
-  const { control, handleSubmit, setValue, watch } = useForm()
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(formSchema)
+  })
   const watchTitle = watch('title', '')
   const watchBody = watch('body', '')
 
@@ -75,11 +85,20 @@ const EditPost: FC<Props> = ({ post, setIsEditing }) => {
 
   return (
     <S.EditContainer>
-      <Field name="title" control={control} />
       <Field
+        name="title"
+        control={control}
+        placeholder={t('editPostTitlePlaceholder')}
+        error={errors?.title?.message}
+        label={t('postTitle')}
+      />
+      <Field
+        label={t('postContent')}
+        placeholder={t('editPostBodyPlaceholder')}
         type="textarea"
         name="body"
         className="edit-post-body"
+        error={errors?.body?.message}
         control={control}
         backgroundColor={fieldBackgroundColor}
         style={{ resize: 'vertical' }}

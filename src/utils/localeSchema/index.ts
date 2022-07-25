@@ -9,6 +9,7 @@ export const localeSchema = {
   },
   string: {
     min: ({ min }) => ({ key: 'min', values: { min } }),
+    max: ({ max }) => ({ key: 'max', values: { max } }),
     email: {
       key: 'emailInvalid'
     }
