@@ -2,6 +2,7 @@ import { FC, useCallback, useEffect } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
 import useFormattedDistanceToNow from '@utils/useFormattedDistanceToNow'
 import ShouldRender from '@components/ShouldRender'
+import { useTheme } from 'styled-components'
 import { Post } from '@constants/types'
 import { Button } from '@components/Button'
 import { Text } from '@components/Text'
@@ -30,6 +31,8 @@ const PostContent: FC<Props> = ({
 
   const [deletePost, { loading: deleting, error: deleteError }] =
     useMutation(DELETE_POST_BY_ID)
+
+  const theme = useTheme()
 
   const { id } = useParams()
 
@@ -79,7 +82,10 @@ const PostContent: FC<Props> = ({
               loading={loading}
               type="medium-label"
               shimmerWidth={100}
-              style={{ paddingLeft: '5px', borderLeft: '1px solid white' }}
+              style={{
+                paddingLeft: '5px',
+                borderLeft: `1px solid ${theme.colors.system.contrast}`
+              }}
             >
               {t('updatedAt', {
                 time: useFormattedDistanceToNow(Number(post?.updatedAt))

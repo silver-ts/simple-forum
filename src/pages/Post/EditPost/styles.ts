@@ -1,13 +1,17 @@
 import styled from 'styled-components'
 
 export const EditContainer = styled.div`
-  margin: 40px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 
   .edit-post-body {
     height: 250px;
+  }
+
+  @media (max-width: 425px) {
+    padding: 40px 20px;
   }
 `
 

@@ -7,6 +7,7 @@ import themeStore from '@state/theme/theme'
 import { ApolloProvider } from '@apollo/client'
 import { GlobalStyle } from '@styles/global'
 import { light, dark } from '@styles/theme'
+import authStore from '@state/auth/auth'
 import { LanguageSelector } from '@components/LanguageSelector'
 import { ProtectedRoute } from '@components/ProtectedRoute'
 import languageStore from '@state/language/language'
@@ -25,10 +26,17 @@ import './index.css'
 const Application: FC = () => {
   const { theme } = themeStore((state) => state)
   const { language: storeLanguage } = languageStore()
+  const { token } = authStore()
 
   useEffect(() => {
     i18next.changeLanguage(storeLanguage)
   }, [storeLanguage])
+
+  useEffect(() => {
+    if (localStorage.getItem('cluster-token') !== token) {
+      localStorage.setItem('cluster-token', token)
+    }
+  }, [])
 
   return (
     <ApolloProvider client={client}>
