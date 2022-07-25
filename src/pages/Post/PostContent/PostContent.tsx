@@ -123,7 +123,7 @@ const PostContent: FC<Props> = ({
           shimmerLines={3}
           type="big-label"
           align="justify"
-          style={{ lineHeight: 1.2 }}
+          style={{ lineHeight: 1.2, whiteSpace: 'pre-wrap' }}
         >
           {post?.body}
         </Text>

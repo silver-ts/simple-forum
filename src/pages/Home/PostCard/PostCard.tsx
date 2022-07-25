@@ -77,7 +77,7 @@ const PostCard: FC<Props> = ({ post, loading, onClick }) => {
           ellipsis
           numberOfLines={3}
           align="justify"
-          style={{ lineHeight: 1.2 }}
+          style={{ lineHeight: 1.2, whiteSpace: 'pre-wrap' }}
         >
           {post?.body}
         </Text>

@@ -94,6 +94,7 @@ const Comment: FC<Props> = ({ comment, loading, isAuthor }) => {
             ellipsis
             numberOfLines={5}
             align="justify"
+            style={{ whiteSpace: 'pre-wrap' }}
           >
             {comment?.comment}
           </Text>
