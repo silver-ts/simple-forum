@@ -1,6 +1,7 @@
 {
   "short_name": "Cluster",
   "name": "Cluster Forum",
+  "description": "A Forum to discuss anything",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,8 +12,21 @@
       "src": "cluster-144.png",
       "sizes": "144x144",
       "type": "image/png"
+    },
+    {
+      "src": "cluster-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "cluster-512-splash.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
   "start_url": ".",
-  "display": "standalone"
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111"
 }
