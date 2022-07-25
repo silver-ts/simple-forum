@@ -70,7 +70,7 @@ const CreatePost: FC = () => {
               name="body"
               control={control}
               error={errors?.body?.message}
-              style={{ height: '200px' }}
+              style={{ height: '200px', resize: 'vertical' }}
             />
             <Button
               type="submit"

@@ -6,6 +6,10 @@ export const PostText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 425px) {
+    margin: 20px;
+  }
 `
 
 export const PostHeader = styled.div`
@@ -29,7 +33,6 @@ export const PostInfo = styled.div`
 export const PostDates = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
 `
 
 export const PostBodyContainer = styled.div`

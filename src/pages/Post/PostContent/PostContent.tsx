@@ -64,14 +64,23 @@ const PostContent: FC<Props> = ({
           {post?.title}
         </Text>
         <S.PostDates>
-          <Text loading={loading} type="medium-label" shimmerWidth={100}>
+          <Text
+            loading={loading}
+            type="medium-label"
+            shimmerWidth={100}
+            style={{ paddingRight: '5px' }}
+          >
             {t('postedAt', {
               time: useFormattedDistanceToNow(Number(post?.createdAt))
             })}
           </Text>
           <ShouldRender if={post?.updatedAt !== post?.createdAt}>
-            <Text loading={loading} type="medium-label" shimmerWidth={100}>
-              {' - '}
+            <Text
+              loading={loading}
+              type="medium-label"
+              shimmerWidth={100}
+              style={{ paddingLeft: '5px', borderLeft: '1px solid white' }}
+            >
               {t('updatedAt', {
                 time: useFormattedDistanceToNow(Number(post?.updatedAt))
               })}
