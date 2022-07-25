@@ -2,7 +2,10 @@ import { createGlobalStyle } from 'styled-components'
 import { dark } from './theme'
 
 export const GlobalStyle = createGlobalStyle`
+:root {
+  --toastify-color-info: #C13584;
 
+}
  
   * { 
       margin: 0;
