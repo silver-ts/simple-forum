@@ -71,3 +71,11 @@ export const DELETE_POST_BY_ID = gql`
     deletePost(postId: $postId)
   }
 `
+
+export const UPDATE_POST_BY_ID = gql`
+  mutation UpdatePost($id: ID!, $title: String!, $body: String!) {
+    updatePost(id: $id, title: $title, body: $body) {
+      id
+    }
+  }
+`

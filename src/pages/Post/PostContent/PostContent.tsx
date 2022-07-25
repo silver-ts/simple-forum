@@ -7,7 +7,6 @@ import { Button } from '@components/Button'
 import { Text } from '@components/Text'
 import { useMutation } from '@apollo/client'
 import { DELETE_POST_BY_ID } from '@constants/mutations'
-import { GET_COMMENTS_BY_ID } from '@constants/queries'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -18,15 +17,19 @@ type Props = {
   post?: Post
   loading: boolean
   isAuthor: boolean
+  onClickEdit: () => void
 }
 
-const PostContent: FC<Props> = ({ post, loading: postLoading, isAuthor }) => {
+const PostContent: FC<Props> = ({
+  post,
+  loading: postLoading,
+  isAuthor,
+  onClickEdit
+}) => {
   const { t } = useTranslation()
 
-  const [deletePost, { loading: deleting, error: deleteError }] = useMutation(
-    DELETE_POST_BY_ID,
-    { refetchQueries: [GET_COMMENTS_BY_ID] }
-  )
+  const [deletePost, { loading: deleting, error: deleteError }] =
+    useMutation(DELETE_POST_BY_ID)
 
   const { id } = useParams()
 
@@ -114,16 +117,28 @@ const PostContent: FC<Props> = ({ post, loading: postLoading, isAuthor }) => {
       <ShareButtons disabled={loading} postTitle={post?.title} />
 
       <ShouldRender if={isAuthor}>
-        <Button
-          backgroundColor="social-instagram"
-          width="75px"
-          onClick={handleClickDelete}
-          loading={loading}
-        >
-          <S.ButtonContent>
-            <S.DeleteIcon />
-          </S.ButtonContent>
-        </Button>
+        <S.ButtonsContainer>
+          <Button
+            backgroundColor="social-instagram"
+            width="70px"
+            onClick={handleClickDelete}
+            loading={loading}
+          >
+            <S.ButtonContent>
+              <S.DeleteIcon />
+            </S.ButtonContent>
+          </Button>
+          <Button
+            backgroundColor="social-instagram"
+            width="70px"
+            onClick={onClickEdit}
+            loading={loading}
+          >
+            <S.ButtonContent>
+              <S.EditIcon />
+            </S.ButtonContent>
+          </Button>
+        </S.ButtonsContainer>
       </ShouldRender>
     </S.PostText>
   )

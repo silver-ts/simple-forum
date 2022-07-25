@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { MdOutlineDelete } from 'react-icons/md'
+import { MdOutlineDelete, MdOutlineModeEditOutline } from 'react-icons/md'
 
 export const PostText = styled.div`
   margin: 40px;
@@ -41,6 +41,17 @@ export const DeleteIcon = styled(MdOutlineDelete).attrs({
   color: 'white',
   size: 20
 })``
+
+export const EditIcon = styled(MdOutlineModeEditOutline).attrs({
+  color: 'white',
+  size: 20
+})``
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`
 
 export const ButtonContent = styled.div`
   width: 100%;
