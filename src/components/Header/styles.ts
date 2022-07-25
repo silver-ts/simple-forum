@@ -35,7 +35,8 @@ export const LogoContainer = styled.div`
 
 export const Logo = styled(Image).attrs({
   width: 40,
-  height: 40
+  height: 40,
+  alt: 'Cluster'
 })``
 
 export const SettingsContainer = styled.div`
@@ -43,14 +44,4 @@ export const SettingsContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
-`
-
-export const Avatar = styled(Image).attrs({
-  width: 55,
-  height: 55,
-  alt: 'User Image'
-})`
-  cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 `

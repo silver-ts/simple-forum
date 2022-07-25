@@ -42,5 +42,8 @@
   "update": "Salvar",
   "edit": "Editar",
   "editPostTitlePlaceholder": "Edite o título da sua publicação",
-  "editPostBodyPlaceholder": "Edite o conteúdo da sua publicação"
+  "editPostBodyPlaceholder": "Edite o conteúdo da sua publicação",
+  "countryFlag": "Bandeira do {{country}}",
+  "changeLanguage": "Mude seu idioma para {{language}}",
+  "switchTheme": "Mude o tema"
 }

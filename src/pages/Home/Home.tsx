@@ -59,6 +59,7 @@ const Home: FC = () => {
               backgroundColor="social-instagram"
               onClick={handleCreatePostButton}
               width="75px"
+              aria-label={t('createPost')}
             >
               <S.ButtonContent>
                 <MdOutlineAdd color="white" size={20} />

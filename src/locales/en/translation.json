@@ -42,5 +42,8 @@
   "update": "Update",
   "edit": "Edit",
   "editPostTitlePlaceholder": "Update your post's title",
-  "editPostBodyPlaceholder": "Update your post's content"
+  "editPostBodyPlaceholder": "Update your post's content",
+  "countryFlag": "{{country}} flag",
+  "changeLanguage": "Change language to {{language}}",
+  "switchTheme": "Switch theme"
 }

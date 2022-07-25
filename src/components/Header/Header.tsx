@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@components/Button'
 import { Text } from '@components/Text'
 import useIsTheme from '@utils/useIsTheme'
-import Default from '@assets/images/user-default.jpg'
 import useIsAuthenticated from '@utils/useIsAuthenticated'
 import Logo from '@assets/images/logo.svg'
 import authStore from '@state/auth/auth'
@@ -12,6 +11,7 @@ import authStore from '@state/auth/auth'
 import ShouldRender from '../ShouldRender'
 import { ThemeSwitch } from './ThemeSwitch'
 
+import { Avatar } from './Avatar'
 import * as S from './styles'
 
 const Header: FC = () => {
@@ -51,7 +51,7 @@ const Header: FC = () => {
         </S.LogoContainer>
         <S.SettingsContainer>
           <ShouldRender if={isAuthenticated}>
-            <S.Avatar src={Default} onClick={handleClickAvatar} />
+            <Avatar onClick={handleClickAvatar} />
           </ShouldRender>
 
           <ShouldRender if={!isAuthenticated}>

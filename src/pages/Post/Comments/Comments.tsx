@@ -49,7 +49,7 @@ const Comments: FC<Props> = (props) => {
       <ShouldRender if={!loading}>
         {data?.comments?.map((comment) => (
           <Comment
-            key={comment?.user?.id}
+            key={comment?.id}
             loading={loading}
             comment={comment}
             isAuthor={comment?.user?.id === user?.id}

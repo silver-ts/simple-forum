@@ -1,10 +1,12 @@
 import { FC, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import Switch from 'react-switch'
 import themeStore from '@state/theme/theme'
 
 import * as S from './styles'
 
 const ThemeSwitch: FC = () => {
+  const { t } = useTranslation()
   const { toggleTheme, theme } = themeStore()
 
   const changeTheme = useCallback(
@@ -14,6 +16,7 @@ const ThemeSwitch: FC = () => {
 
   return (
     <Switch
+      aria-label={t('switchTheme')}
       checked={theme}
       onChange={changeTheme}
       uncheckedIcon={false}
