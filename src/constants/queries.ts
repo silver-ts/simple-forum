@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const HOMEPAGE_POSTS_QUERY = gql`
-  query GetPosts {
-    posts {
+  query GetPosts($offset: Int!, $limit: Int!) {
+    posts(offset: $offset, limit: $limit) {
       id
       body
       title
@@ -11,14 +11,6 @@ export const HOMEPAGE_POSTS_QUERY = gql`
       author {
         displayName
         id
-      }
-      comments {
-        comment
-        id
-        createdAt
-        user {
-          displayName
-        }
       }
     }
   }
@@ -51,8 +43,8 @@ export const GET_POST_BY_ID = gql`
 `
 
 export const GET_COMMENTS_BY_ID = gql`
-  query GetComments($postId: ID!) {
-    comments(postId: $postId) {
+  query GetComments($postId: ID!, $offset: Int!, $limit: Int!) {
+    comments(postId: $postId, offset: $offset, limit: $limit) {
       comment
       createdAt
       updatedAt

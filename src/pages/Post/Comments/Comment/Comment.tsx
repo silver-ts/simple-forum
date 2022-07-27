@@ -16,7 +16,7 @@ import * as S from './styles'
 type Props = {
   comment?: CommentType
   isAuthor?: boolean
-  loading: boolean
+  loading?: boolean
 }
 
 const Comment: FC<Props> = ({ comment, loading, isAuthor }) => {

@@ -10,7 +10,7 @@ import * as S from './styles'
 
 type Props = {
   post?: Post
-  loading: boolean
+  loading?: boolean
   onClick?: () => void
 }
 

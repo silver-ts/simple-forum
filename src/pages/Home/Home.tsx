@@ -1,5 +1,6 @@
-import { FC, useCallback, useEffect } from 'react'
+import { FC, useCallback, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import useOnScreen from '@utils/useOnScreen'
 import { useQuery } from '@apollo/client'
 import { MdOutlineAdd } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
@@ -21,11 +22,18 @@ const Home: FC = () => {
 
   const [isAuthenticated] = useIsAuthenticated()
 
-  const { data, loading, error } = useQuery(HOMEPAGE_POSTS_QUERY, {
-    fetchPolicy: 'cache-and-network'
+  const bottomRef = useRef()
+  const reachedBottom = useOnScreen(bottomRef)
+
+  const { data, loading, error, fetchMore } = useQuery(HOMEPAGE_POSTS_QUERY, {
+    fetchPolicy: 'cache-and-network',
+    variables: {
+      offset: 0,
+      limit: 5
+    }
   })
 
-  const posts = data?.posts || []
+  const posts = data?.posts
 
   const navigate = useNavigate()
 
@@ -45,6 +53,17 @@ const Home: FC = () => {
   }, [error])
 
   const textColor = useIsTheme('system-contrast', 'social-instagram')
+
+  useEffect(() => {
+    if (reachedBottom) {
+      fetchMore({
+        variables: {
+          offset: posts?.length,
+          limit: 3
+        }
+      })
+    }
+  }, [reachedBottom])
 
   return (
     <PageWrapper>
@@ -66,24 +85,24 @@ const Home: FC = () => {
               </S.ButtonContent>
             </Button>
           </S.TitleContainer>
-          <ShouldRender if={!loading}>
+          <ShouldRender if={!loading || posts?.length}>
             {posts?.map((post: Post) => (
               <PostCard
                 key={post?.id}
-                loading={loading}
                 post={post}
                 onClick={goTo(`posts/${post?.id}`)}
               />
             ))}
           </ShouldRender>
 
-          <ShouldRender if={loading || !posts.length}>
+          <ShouldRender if={loading && !posts?.length}>
             {Array.from([0, 1, 2, 3, 4, 5]).map(() => (
               <PostCard loading />
             ))}
           </ShouldRender>
         </S.Content>
       </S.Container>
+      <div ref={bottomRef} />
     </PageWrapper>
   )
 }

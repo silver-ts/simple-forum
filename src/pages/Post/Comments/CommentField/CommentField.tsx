@@ -49,6 +49,10 @@ const CommentField: FC<Props> = ({
   const { control, handleSubmit, setValue, watch } = useForm()
   const watchCommment = watch('comment', '')
 
+  const closeField = useCallback(() => {
+    setShowField(false)
+  }, [])
+
   const handleClick = useCallback(
     (payload) => {
       if (isAuthenticated && !isEdit) {
@@ -70,6 +74,7 @@ const CommentField: FC<Props> = ({
           }
         }).then(() => {
           setValue('comment', '')
+          closeField()
         })
       }
 
@@ -94,10 +99,6 @@ const CommentField: FC<Props> = ({
     if (comment) {
       setValue('comment', comment.comment)
     }
-  }, [])
-
-  const closeField = useCallback(() => {
-    setShowField(false)
   }, [])
 
   const fieldBackgroundColor = useIsTheme('system-jetblack', 'system-grey')
