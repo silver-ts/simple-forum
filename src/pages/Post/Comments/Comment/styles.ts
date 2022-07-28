@@ -38,6 +38,8 @@ export const ActionText = styled(Text).attrs({
   cursor: pointer;
   width: fit-content;
 
+  text-decoration: none;
+
   &:hover {
     filter: opacity(0.8);
   }

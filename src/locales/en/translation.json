@@ -45,5 +45,6 @@
   "editPostBodyPlaceholder": "Update your post's content",
   "countryFlag": "{{country}} flag",
   "changeLanguage": "Change language to {{language}}",
-  "switchTheme": "Switch theme"
+  "switchTheme": "Switch theme",
+  "report": "Report"
 }

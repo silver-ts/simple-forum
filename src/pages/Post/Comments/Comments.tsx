@@ -67,6 +67,7 @@ const Comments: FC<Props> = (props) => {
             key={comment?.id}
             loading={loading}
             comment={comment}
+            postId={postId}
             isAuthor={comment?.user?.id === user?.id}
           />
         ))}

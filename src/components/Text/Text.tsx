@@ -52,10 +52,10 @@ export type TextProps = {
   isRandomWidth?: boolean
   shimmerLines?: number
   lowerCase?: boolean
+  href?: string
   capitalize?: boolean
   tag?: Tag
   underline?: boolean
-  href?: string
   onClick?: () => void
   className?: string
   htmlFor?: string
@@ -73,6 +73,8 @@ const Text: React.FC<TextProps> = ({
   weight,
   ellipsis,
   isRandomWidth,
+  href,
+  target = '_blank',
   style,
   lowerCase,
   shimmerHeight,
@@ -88,7 +90,6 @@ const Text: React.FC<TextProps> = ({
   numberOfLines = 1,
   tag = 'p',
   align = 'left',
-  target = '_blank',
   ...props
 }: TextProps) => {
   const theme = useTheme()
@@ -129,6 +130,8 @@ const Text: React.FC<TextProps> = ({
           textColor={resolve(color)}
           size={size}
           font={font}
+          href={href}
+          target={target}
           align={align}
           italic={italic}
           upperCase={upperCase}
@@ -143,7 +146,6 @@ const Text: React.FC<TextProps> = ({
           onClick={onClick}
           className={className}
           hyphens={hyphens}
-          target={tag === 'a' ? target : undefined}
           {...typeProps}
         >
           {customChildren}

@@ -1,7 +1,10 @@
-import { FC, useCallback, useEffect } from 'react'
+import { FC, useCallback, useEffect, useMemo } from 'react'
+import { format } from 'date-fns'
 import { useTranslation, Trans } from 'react-i18next'
 import useFormattedDistanceToNow from '@utils/useFormattedDistanceToNow'
+import authStore from '@state/auth/auth'
 import ShouldRender from '@components/ShouldRender'
+import useIsAuthenticated from '@utils/useIsAuthenticated'
 import { useTheme } from 'styled-components'
 import { Post } from '@constants/types'
 import { Button } from '@components/Button'
@@ -29,12 +32,16 @@ const PostContent: FC<Props> = ({
 }) => {
   const { t } = useTranslation()
 
+  const [isAuthenticated] = useIsAuthenticated()
+
   const [deletePost, { loading: deleting, error: deleteError }] =
     useMutation(DELETE_POST_BY_ID)
 
   const theme = useTheme()
 
   const { id } = useParams()
+
+  const { user } = authStore()
 
   const loading = deleting || postLoading
 
@@ -47,6 +54,21 @@ const PostContent: FC<Props> = ({
       }
     }).then(() => navigate('/'))
   }, [])
+
+  const reportDate = useMemo(
+    () => format(new Date(), 'HH:mm dd/MM/yyyy'),
+    [post]
+  )
+
+  const handleClickReport = useCallback(() => {
+    // eslint-disable-next-line no-unused-expressions
+    window.open(
+      `mailto:leojuriolli3@gmail.com?subject=Reporting%20post%20on%20Cluster&body=Post%20id:%20${post?.id}%20%0D%0APost%20title:%20${post?.title}%0D%0APost%20by:%20${post?.author?.displayName}%20(${post?.author?.username})%0D%0AReported%20by:%20${user?.displayName}%20(${user?.username})%0D%0ADate%20reported:%20${reportDate}%0D%0A(Add%20more%20info%20here)`
+    ) ||
+      window.location.replace(
+        `mailto:leojuriolli3@gmail.com?subject=Reporting%20post%20on%20Cluster&body=Post%20id:%20${post?.id}%20%0D%0APost%20title:%20${post?.title}%0D%0ADate%20reported:%20${reportDate}%0D%0A(Add%20more%20info%20here)`
+      )
+  }, [post])
 
   useEffect(() => {
     if (deleteError) {
@@ -131,8 +153,8 @@ const PostContent: FC<Props> = ({
 
       <ShareButtons disabled={loading} postTitle={post?.title} />
 
-      <ShouldRender if={isAuthor}>
-        <S.ButtonsContainer>
+      <S.ButtonsContainer>
+        <ShouldRender if={isAuthor && !postLoading}>
           <Button
             backgroundColor="social-instagram"
             width="70px"
@@ -153,8 +175,21 @@ const PostContent: FC<Props> = ({
               <S.EditIcon />
             </S.ButtonContent>
           </Button>
-        </S.ButtonsContainer>
-      </ShouldRender>
+        </ShouldRender>
+
+        <ShouldRender if={!postLoading && !isAuthor && isAuthenticated}>
+          <Button
+            backgroundColor="social-instagram"
+            width="70px"
+            loading={loading}
+            onClick={handleClickReport}
+          >
+            <S.ButtonContent>
+              <S.ReportIcon />
+            </S.ButtonContent>
+          </Button>
+        </ShouldRender>
+      </S.ButtonsContainer>
     </S.PostText>
   )
 }

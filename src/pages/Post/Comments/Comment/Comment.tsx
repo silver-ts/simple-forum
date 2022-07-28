@@ -1,4 +1,6 @@
-import { FC, useCallback, useEffect, useState } from 'react'
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import authStore from '@state/auth/auth'
+import { format } from 'date-fns'
 import { useTranslation } from 'react-i18next'
 import { Text } from '@components/Text'
 import { useMutation } from '@apollo/client'
@@ -15,14 +17,16 @@ import * as S from './styles'
 
 type Props = {
   comment?: CommentType
+  postId?: string
   isAuthor?: boolean
   loading?: boolean
 }
 
-const Comment: FC<Props> = ({ comment, loading, isAuthor }) => {
+const Comment: FC<Props> = ({ comment, loading, isAuthor, postId }) => {
   const [showField, setShowField] = useState(false)
   const { t } = useTranslation()
   const [isAuthenticated] = useIsAuthenticated()
+  const { user } = authStore()
 
   const [deleteComment, { loading: deleting, error }] = useMutation(
     DELETE_COMMENT_BY_ID,
@@ -55,6 +59,11 @@ const Comment: FC<Props> = ({ comment, loading, isAuthor }) => {
       setShowField(false)
     }
   }, [isAuthenticated])
+
+  const reportDate = useMemo(
+    () => format(new Date(), 'HH:mm dd/MM/yyyy'),
+    [comment]
+  )
 
   return (
     <S.Comment>
@@ -116,6 +125,15 @@ const Comment: FC<Props> = ({ comment, loading, isAuthor }) => {
             </S.ActionText>
             <S.ActionText loading={loading} onClick={handleClickEdit}>
               {t('edit')}
+            </S.ActionText>
+          </ShouldRender>
+          <ShouldRender if={!isAuthor && isAuthenticated}>
+            <S.ActionText
+              tag="a"
+              href={`mailto:leojuriolli3@gmail.com?subject=Reporting%20comment%20on%20Cluster&body=Comment%20id:%20${comment?.id}%20%0D%0AComment%20content:%20${comment?.comment}%0D%0APost%20id:%20${postId}%0D%0AComment%20by:%20${comment?.user?.displayName}%20(${comment?.user?.username})%0D%0AReported%20by:%20${user?.displayName}%20(${user?.username})%0D%0ADate%20reported:%20${reportDate}%0D%0A(Add%20more%20info%20here)`}
+              loading={loading}
+            >
+              {t('report')}
             </S.ActionText>
           </ShouldRender>
         </S.ActionsContainer>

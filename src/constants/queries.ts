@@ -26,6 +26,7 @@ export const GET_POST_BY_ID = gql`
       updatedAt
       author {
         displayName
+        username
         id
       }
       comments {
@@ -52,6 +53,7 @@ export const GET_COMMENTS_BY_ID = gql`
       user {
         id
         displayName
+        username
       }
     }
   }

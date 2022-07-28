@@ -45,5 +45,6 @@
   "editPostBodyPlaceholder": "Edite o conteúdo da sua publicação",
   "countryFlag": "Bandeira do {{country}}",
   "changeLanguage": "Mude seu idioma para {{language}}",
-  "switchTheme": "Mude o tema"
+  "switchTheme": "Mude o tema",
+  "report": "Reportar"
 }

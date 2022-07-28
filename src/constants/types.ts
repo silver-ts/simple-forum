@@ -5,6 +5,7 @@ export type Comment = {
   updatedAt: string
   user: {
     displayName: string
+    username: string
     id: string
   }
 }
@@ -18,6 +19,7 @@ export type Post = {
   comments: Comment
   author: {
     displayName: string
+    username: string
     id: string
   }
 }
