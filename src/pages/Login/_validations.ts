@@ -5,8 +5,8 @@ import { setLocale } from 'yup'
 setLocale(localeSchema)
 
 const formSchema = yup.object().shape({
-  email: yup.string().trim().required().email(),
-  password: yup.string().trim().required().min(6)
+  email: yup.string().trim().required().email().min(3).max(75),
+  password: yup.string().trim().required().min(6).max(50)
 })
 
 export { formSchema }
