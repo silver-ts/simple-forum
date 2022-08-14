@@ -38,9 +38,11 @@ const Application: FC = () => {
     }
   }, [])
 
+  const isDarkTheme = theme
+
   return (
     <ApolloProvider client={client}>
-      <ThemeProvider theme={theme === true ? dark : light}>
+      <ThemeProvider theme={isDarkTheme ? dark : light}>
         <GlobalStyle />
         <BrowserRouter>
           <Routes>
@@ -78,7 +80,7 @@ const Application: FC = () => {
       <ToastContainer
         draggable
         position="top-center"
-        theme={theme ? 'dark' : 'light'}
+        theme={isDarkTheme ? 'dark' : 'light'}
       />
     </ApolloProvider>
   )
