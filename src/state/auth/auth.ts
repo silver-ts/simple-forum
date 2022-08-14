@@ -10,23 +10,28 @@ type State = {
 }
 
 const authStore = create(
-  persist<State>((set) => ({
-    token: undefined,
-    setToken: (value) => set(() => ({ token: value })),
-    user: {
-      username: undefined,
-      displayName: undefined,
-      id: undefined
-    },
-    setUser: (value: User) =>
-      set(() => ({
-        user: {
-          username: value?.username,
-          displayName: value?.displayName,
-          id: value?.id
-        }
-      }))
-  }))
+  persist<State>(
+    (set) => ({
+      token: undefined,
+      setToken: (value) => set(() => ({ token: value })),
+      user: {
+        username: undefined,
+        displayName: undefined,
+        id: undefined
+      },
+      setUser: (value: User) =>
+        set(() => ({
+          user: {
+            username: value?.username,
+            displayName: value?.displayName,
+            id: value?.id
+          }
+        }))
+    }),
+    {
+      name: 'user'
+    }
+  )
 )
 
 export default authStore

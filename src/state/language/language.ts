@@ -7,10 +7,15 @@ type State = {
 }
 
 const languageStore = create(
-  persist<State>((set) => ({
-    language: navigator.language.substring(0, 2),
-    toggleLanguage: (value) => set(() => ({ language: value }))
-  }))
+  persist<State>(
+    (set) => ({
+      language: navigator.language.substring(0, 2),
+      toggleLanguage: (value) => set(() => ({ language: value }))
+    }),
+    {
+      name: 'user-language'
+    }
+  )
 )
 
 export default languageStore

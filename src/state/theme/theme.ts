@@ -9,10 +9,15 @@ type State = {
 const isDarkMode = matchMedia('(prefers-color-scheme: dark)').matches
 
 const themeStore = create(
-  persist<State>((set) => ({
-    theme: isDarkMode,
-    toggleTheme: (value) => set(() => ({ theme: value }))
-  }))
+  persist<State>(
+    (set) => ({
+      theme: isDarkMode,
+      toggleTheme: (value) => set(() => ({ theme: value }))
+    }),
+    {
+      name: 'user-theme'
+    }
+  )
 )
 
 export default themeStore
