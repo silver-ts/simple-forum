@@ -25,9 +25,10 @@ const ThemeSwitch: FC = () => {
       handleDiameter={25}
       width={50}
       borderRadius={5}
-      uncheckedHandleIcon={<S.DarkModeIcon />}
-      onColor="#C13584"
-      checkedHandleIcon={
+      checkedHandleIcon={<S.DarkModeIcon />}
+      offColor="#C13584"
+      onColor="#888"
+      uncheckedHandleIcon={
         <S.LightModeIconContainer>
           <S.LightModeIcon />
         </S.LightModeIconContainer>

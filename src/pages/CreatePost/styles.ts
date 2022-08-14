@@ -24,4 +24,5 @@ export const Form = styled.div`
   flex-direction: column;
   gap: 40px;
   margin-top: 40px;
+  padding-bottom: 50px;
 `

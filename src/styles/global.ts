@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-import { dark } from './theme'
 
 export const GlobalStyle = createGlobalStyle`
 :root {
@@ -22,11 +21,11 @@ export const GlobalStyle = createGlobalStyle`
 
     &::-webkit-scrollbar {
       background-color: ${({ theme }) =>
-        theme === dark && theme.colors.system.tertiary};
+        theme.name === 'dark' && theme.colors.system.tertiary};
   }
 
   &::-webkit-scrollbar-thumb{
-    background-color: ${({ theme }) => theme === dark && '#888'};
+    background-color: ${({ theme }) => theme.name === 'dark' && '#888'};
 
   }
 

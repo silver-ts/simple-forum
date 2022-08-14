@@ -2,13 +2,13 @@ import create from 'zustand'
 import { persist } from 'zustand/middleware'
 
 type State = {
-  language: 'en' | 'pt'
+  language: string
   toggleLanguage: (value: 'en' | 'pt') => void
 }
 
 const languageStore = create(
   persist<State>((set) => ({
-    language: 'pt',
+    language: navigator.language.substring(0, 2),
     toggleLanguage: (value) => set(() => ({ language: value }))
   }))
 )

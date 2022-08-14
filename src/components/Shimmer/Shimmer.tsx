@@ -1,9 +1,8 @@
-import { dark } from '@styles/theme'
 import styled from 'styled-components'
 
 export default styled.div`
   ${({ theme }) =>
-    theme === dark
+    theme.name === 'dark'
       ? `
       background-image: linear-gradient(
     -90deg,

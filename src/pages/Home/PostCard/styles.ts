@@ -7,7 +7,13 @@ export const PostCard = styled.div`
   padding: 20px 30px;
   cursor: pointer;
   transition: 300ms;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+  ${({ theme }) =>
+    theme.name === 'light' &&
+    `
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  `}
 
   @media (max-width: 415px) {
     box-shadow: rgba(17, 17, 26, 0.2) 0px 1px 0px,

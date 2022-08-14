@@ -14,8 +14,6 @@ export const Content = styled.div`
   gap: 40px;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.system.secondary};
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 20px 0;
 
   @media (max-width: 415px) {

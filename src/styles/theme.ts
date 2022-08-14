@@ -36,6 +36,7 @@ const social = {
 }
 
 export const light: DefaultTheme = {
+  name: 'light',
   colors: {
     system: {
       primary: '#3331',
@@ -54,6 +55,7 @@ export const light: DefaultTheme = {
 }
 
 export const dark: DefaultTheme = {
+  name: 'dark',
   colors: {
     system: {
       primary: '#111',

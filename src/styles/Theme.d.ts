@@ -48,6 +48,7 @@ declare namespace Styles {
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    name: 'light' | 'dark'
     colors: {
       system: System
       status: StatusShades
